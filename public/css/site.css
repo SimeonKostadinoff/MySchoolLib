@@ -1,0 +1,12 @@
+body{padding-top: 60px}
+footer{
+    border-top: solid #808080 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.navbar-right .navbar-form input
+{
+        margin-right: 15px;
+}
