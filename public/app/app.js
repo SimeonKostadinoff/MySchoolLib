@@ -21,18 +21,18 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/main/home',
             controller: 'MainCtrl'
         })
-        .when('/courses', {
+        .when('/books', {
             templateUrl: '/partials/courses/courses-list',
             controller: 'CoursesListCtrl'
         })
-        .when('/courses/:id', {
+        .when('/books/:id', {
             templateUrl: '/partials/courses/course-details',
             controller: 'CourseDetailsCtrl'
         })
-        .when('/signup', {
+        /*.when('/signup', {
             templateUrl: '/partials/account/signup',
             controller: 'SignUpCtrl'
-        })
+        })*/
         .when('/profile', {
             templateUrl: '/partials/account/profile',
             controller: 'ProfileCtrl',
