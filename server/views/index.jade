@@ -1,17 +1,20 @@
 extends includes/layout
 block main-content
-   header.nav.navbar-inverse.navbar-fixed-top
-      .container
-         .navbar-header
-            a.navbar-brand(href="$/") MySchoolLib
-         .navbar-collapse.collapse
-            ul.nav.navbar-nav
-               li
-                  a(href="/") Home
-            div(ng-include="'partials/account/login'")
-   section
-      div(ng-view)
+    header.nav.navbar-inverse.navbar-fixed-top
+        .container
+            .navbar-header
+                a.navbar-brand(href="#/") MySchoolLib
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="#/") Home
+                    li
+                        a(href="#/courses") Books
+                div(ng-include="'partials/account/login'")
 
-   footer
-      p.text-center
-         |&copy; Nikolay Slavkov and Simeon Kostadinov
+    section
+        div(ng-view)
+
+    footer
+        p.text-center
+            | &copy; Nikolay Slavkov & Simeon Kostadinov

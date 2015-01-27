@@ -1,15 +1,15 @@
 var path = require('path');
-var rootPath=path.normalize(__dirname + '/../../');
+var rootPath = path.normalize(__dirname + '/../../')
 
-module.exports ={
-    development:{
+module.exports = {
+    development: {
         rootPath: rootPath,
-        db:'mongodb://localhost/database',
-        port: process.env.PORT || 3000
+        db: 'mongodb://localhost/my-school-lib',
+        port: process.env.PORT || 3030
     },
     production: {
         rootPath: rootPath,
-        db:'mongodb://admin:admin@ds031551.mongolab.com:31551/my-school-lib-db',
-        port: process.env.PORT || 3000
+        db: 'mongodb://admin:admin@ds031551.mongolab.com:31551/my-school-lib-db',
+        port: process.env.PORT || 3030
     }
 }

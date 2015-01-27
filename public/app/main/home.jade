@@ -1,2 +1,12 @@
-.jumbotron
-    h1 Hello !!!
+.container
+    .jumbotron
+        h1 НПМГ Библиотека
+    .row
+        .col-md-6
+            .panel.panel-info
+                .panel-heading.text-center Featured
+                .panel-body(ng-include="'/partials/main/featured-courses'")
+        .col-md-6
+            .panel.panel-info
+                .panel-heading.text-center New
+                .panel-body(ng-include="'/partials/main/new-courses'")
