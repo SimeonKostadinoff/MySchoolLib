@@ -10,7 +10,7 @@ var booksSchema = mongoose.Schema({
 
 var Book = mongoose.model('Book', booksSchema);
 
-module.exports.seedInitialCourses = function() {
+module.exports.seedInitialBooks = function() {
     Book.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find books: ' + err);

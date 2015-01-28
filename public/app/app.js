@@ -21,11 +21,11 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/main/home',
             controller: 'MainCtrl'
         })
-        .when('/books', {
+        .when('/courses', {
             templateUrl: '/partials/courses/courses-list',
             controller: 'CoursesListCtrl'
         })
-        .when('/books/:id', {
+        .when('/courses/:id', {
             templateUrl: '/partials/courses/course-details',
             controller: 'CourseDetailsCtrl'
         })
