@@ -1,20 +1,23 @@
 .container
     .row
-        .col-md-2 Search
+        .col-md-2.vertical-center Search
         .col-md-4
             input.form-control(type="text", placeholder="Search", ng-model="search")
-        .col-md-2 Sort
+        .col-md-2.vertical-center Sort
         .col-md-4
             select.form-control(ng-model="sort")
                 option(value=" " ng-selected="'true'") Default
                 option(value="title") Title
+                option(value="author") Author
                 option(value="published") Published
     br
-    table.table
+    table.table.table-striped.table-hover
         tr
             th Title
+            th Author
             th Published
-        tr(ng-repeat="course in courses | filter: search | orderBy: sort")
+        tr(ng-repeat="book in books | filter: search | orderBy: sort")
             td
-                a(href="#/courses/{{ course._id }}") {{ course.title }}
-            td {{ course.published | date }}
+                a(href="#/books/{{ book._id }}") {{ book.title }}
+            td {{ book.author }}
+            td {{ book.published | date }}

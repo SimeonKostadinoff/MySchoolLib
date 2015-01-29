@@ -9,6 +9,9 @@ module.exports = function(app) {
     app.get('/api/courses', controllers.courses.getAllCourses);
     app.get('/api/courses/:id', controllers.courses.getCourseById);
 
+    app.get('/api/books', controllers.books.getAllBooks);
+    app.get('/api/books/:id', controllers.books.getBookById);
+
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
     });

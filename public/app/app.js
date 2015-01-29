@@ -29,6 +29,14 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl: '/partials/courses/course-details',
             controller: 'CourseDetailsCtrl'
         })
+        .when('/books', {
+            templateUrl: '/partials/books/books-list',
+            controller: 'BooksListCtrl'
+        })
+        .when('/books/:id', {
+            templateUrl: '/partials/books/book-details',
+            controller: 'BookDetailsCtrl'
+        })
         /*.when('/signup', {
             templateUrl: '/partials/account/signup',
             controller: 'SignUpCtrl'

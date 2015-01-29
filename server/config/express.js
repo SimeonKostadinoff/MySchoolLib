@@ -19,8 +19,6 @@ module.exports = function(app, config) {
     }));
 
 
-
-
     app.use(stylus.middleware(
         {
             src: config.rootPath + '/public',
