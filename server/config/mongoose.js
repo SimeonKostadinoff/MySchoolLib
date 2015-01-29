@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
     user = require('../models/User'),
-    course = require('../models/Course'),
     book = require('../models/Book');
 
 module.exports = function(config) {
@@ -21,6 +20,5 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
-    course.seedInitialCourses();
     book.seedInitialBooks();
 };

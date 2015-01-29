@@ -6,9 +6,6 @@ module.exports = function(app) {
    // app.post('/api/users', controllers.users.createUser);
    // app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
-    app.get('/api/courses', controllers.courses.getAllCourses);
-    app.get('/api/courses/:id', controllers.courses.getCourseById);
-
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
 
