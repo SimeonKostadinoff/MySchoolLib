@@ -12,9 +12,11 @@
                 span.caret
             ul.dropdown-menu
                 li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/users") Users
+                    a(href="#/admin/users") Потребители
                 li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/books") Book?
+                    a(href="#/admin/books") Книги
+                li(ng-show="identity.currentUser.isAdmin()")
+                    a(href="#/admin/add-new-book") Добавяне на нова книга
                 li(ng-show="identity.isAuthenticated()")
                    a(href="#/profile") Профил
                 li

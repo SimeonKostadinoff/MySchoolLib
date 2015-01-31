@@ -18,5 +18,16 @@ module.exports = {
 
             res.send(book);
         })
+    },
+    addNewBook: function(req, res, next) {
+        var newBookData = req.body;
+        newBookData.boughtDate=new Date();
+        Book.create(newBookData, function(err, book) {
+            if (err) {
+                console.log('Failed to add new book: ' + err);
+                return;
+            }
+            res.send(book);
+        });
     }
 };

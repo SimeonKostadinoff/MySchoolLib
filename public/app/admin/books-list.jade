@@ -1,6 +1,12 @@
 .container
-    table.table
+    table.table.table-striped.table-hover
+        tr
+            th Заглавие
+            th Автор
+            th Статус
         tr(ng-repeat="book in books")
-            td {{ book.name }}
+            td {{ book.title }}
             td {{ book.author }}
-            td {{ book.status }}
+            td(ng-if="book.status.requstedBy == ''") В наличност
+            td(ng-if="book.status.requstedBy != ''")
+                div(ng-repeat="user in book.status.requstedBy") В {{ user }}

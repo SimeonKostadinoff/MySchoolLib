@@ -1,5 +1,5 @@
 .container
     h2 {{ book.title }}
-    p {{ book.published | date }}
+    p {{ book.boughtDate | date }}
     ul
         li(ng-repeat="tag in book.tags") {{ tag }}

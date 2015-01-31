@@ -9,7 +9,7 @@
                 option(value=" " ng-selected="'true'") Default
                 option(value="title") Title
                 option(value="author") Author
-                option(value="published") Published
+                option(value="boughtDate") Published
     br
     table.table.table-striped.table-hover
         tr
@@ -20,4 +20,4 @@
             td
                 a(href="#/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
-            td {{ book.published | date }}
+            td {{ book.boughtDate | date }}

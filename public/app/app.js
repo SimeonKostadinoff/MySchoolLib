@@ -48,6 +48,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'BookListCtrl',
             resolve: routeUserChecks.adminRole
         })
+        .when('/admin/add-new-book', {
+            templateUrl: '/partials/admin/add-new-book',
+            controller: 'AddNewBookCtrl',
+            resolve: routeUserChecks.adminRole
+        })
 });
 
 app.run(function($rootScope, $location) {

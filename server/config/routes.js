@@ -6,6 +6,8 @@ module.exports = function(app) {
    // app.post('/api/users', controllers.users.createUser);
    // app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
 
+    app.post('/api/books',auth.isInRole('admin'), controllers.books.addNewBook);
+
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
 
