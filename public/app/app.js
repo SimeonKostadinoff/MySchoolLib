@@ -43,6 +43,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'UserListCtrl',
             resolve: routeUserChecks.adminRole
         })
+        .when('/admin/books', {
+            templateUrl: '/partials/admin/books-list',
+            controller: 'BookListCtrl',
+            resolve: routeUserChecks.adminRole
+        })
 });
 
 app.run(function($rootScope, $location) {

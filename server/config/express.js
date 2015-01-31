@@ -3,8 +3,9 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    passport = require('passport');
-var RedisStore = require('connect-redis')(session);
+    passport = require('passport'),
+    mongoose = require('mongoose'),
+    MongoStore = require('connect-mongo')(session);
 
 module.exports = function(app, config) {
     app.set('view engine', 'jade');
@@ -12,11 +13,16 @@ module.exports = function(app, config) {
     app.use(cookieParser());
     app.use(bodyParser.json());
 
-    app.use(session({secret: 'magic unicorns',
-        resave:true,
-        saveUninitialized:false
+    var connection = mongoose.createConnection(config.db);
 
+    app.use(session({
+        secret:'the biggest secret ever',
+        resave: false, // don't save session if unmodified
+        saveUninitialized: false, // don't create session until something stored
+        maxAge: new Date(Date.now() + 3600000),
+        store: new MongoStore({ mongooseConnection: connection })
     }));
+
 
 
     app.use(stylus.middleware(

@@ -30,3 +30,7 @@ footer p {
 /* vertical alignment of the inline element */
   height: 100%;
 }
+.btn {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
