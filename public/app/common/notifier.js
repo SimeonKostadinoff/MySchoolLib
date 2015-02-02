@@ -5,6 +5,9 @@ app.factory('notifier', function(toastr) {
         },
         error: function(msg) {
             toastr.error(msg);
+        },
+        info: function(msg) {
+            toastr.info(msg);
         }
     }
 })

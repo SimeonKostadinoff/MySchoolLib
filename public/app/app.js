@@ -53,6 +53,11 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'AddNewBookCtrl',
             resolve: routeUserChecks.adminRole
         })
+        .when('/admin/books/:id', {
+            templateUrl: '/partials/admin/admin-book',
+            controller: 'AdminBookCtrl',
+            resolve: routeUserChecks.adminRole
+        })
 });
 
 app.run(function($rootScope, $location) {

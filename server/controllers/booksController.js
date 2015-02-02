@@ -22,6 +22,13 @@ module.exports = {
     addNewBook: function(req, res, next) {
         var newBookData = req.body;
         newBookData.boughtDate=new Date();
+        newBookData.status = {
+            requestedBy: null,
+            takenBy: null,
+            takenDate: null,
+            returned: true,
+            returnDate: null
+        }
         Book.create(newBookData, function(err, book) {
             if (err) {
                 console.log('Failed to add new book: ' + err);
@@ -29,5 +36,13 @@ module.exports = {
             }
             res.send(book);
         });
+    },
+    addRequestFromUserToBook: function(req,res,next){
+        var newBookData = req.body;
+
+        Book.update({_id: req.body._id}, newBookData, function(){
+            res.end();
+        })
+
     }
 };

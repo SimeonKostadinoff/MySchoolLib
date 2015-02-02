@@ -7,7 +7,9 @@ var userSchema = mongoose.Schema({
     lastName: { type: String, require: '{PATH} is required' },
     salt: String,
     hashPass: String,
-    roles: [String]
+    roles: [String],
+    requestedBooks:[String],
+    takenBooks:[String]
 });
 
 userSchema.method({
@@ -30,7 +32,7 @@ module.exports.seedInitialUsers = function() {
             return;
         }
 
-        if (collection.length === 0) {
+        if (collection.length === 3) {
             var salt;
             var hashedPwd;
 

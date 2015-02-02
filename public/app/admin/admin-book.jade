@@ -1,0 +1,12 @@
+.container
+    h2 {{ book.title }}
+
+    table.table.table-striped.table-hover
+        tr
+            th   Потребител
+            th   Дата на взимане
+            th   Дата на връщане
+        tr(ng-repeat="log in book.log")
+            td {{ log.takenBy }}
+            td {{ log.takenDate }}
+            td {{ log.returnDate }}

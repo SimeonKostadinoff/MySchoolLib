@@ -1,23 +1,39 @@
 .container
     .row
-        .col-md-2.vertical-center Search
+        .col-md-2.vertical-center Търси
         .col-md-4
-            input.form-control(type="text", placeholder="Search", ng-model="search")
-        .col-md-2 Sort
-        .col-md-4
-            select.form-control(ng-model="sort")
-                option(value=" " ng-selected="'true'") Default
-                option(value="title") Title
-                option(value="author") Author
-                option(value="boughtDate") Published
+            input.form-control(type="text", placeholder="Търси", ng-model="search")
+        //.col-md-2 Сортирай
+        //.col-md-4
+        //    select.form-control(ng-model="sort")
+        //        option(value=" " ng-selected="'true'") По подразбиране
+        //        option(value="title") Заглавие
+        //        option(value="author") Автор
+        //        option(value="boughtDate") Дата на добавяне
     br
     table.table.table-striped.table-hover
         tr
-            th Title
-            th Author
-            th Published
+            th
+                a(href="" ng-click="sort = 'title'") Заглавие
+            th
+                a(href="" ng-click="sort = 'author'") Автор
+            th
+                a(href="" ng-click="sort = 'boughtDate'") Дата
+            th
+                a(href="" ng-click="sort = 'currentStatus'") Статус
+            th
         tr(ng-repeat="book in books | filter: search | orderBy: sort")
             td
                 a(href="#/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
             td {{ book.boughtDate | date }}
+            //td(ng-if="book.status.requestedBy ==''" && "book.status.takenBy ==''") В наличност
+            //td(ng-if="book.status.requestedBy != ''")
+            //    div(ng-repeat="user in book.status.requestedBy") Requested by {{ user }}
+            //td(ng-if="book.status.takenBy != ''") В {{ book.status.takenBy }}
+
+            //TODO: need to show user.firstName instead of user._id
+            //TODO: disable the Request button if the book is taken
+            td {{ book.currentStatus }}
+            td
+                button.btn-link(ng-click="addUserRequestToBook(book)") Request

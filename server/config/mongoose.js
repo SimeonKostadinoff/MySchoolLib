@@ -20,4 +20,5 @@ module.exports = function(config) {
     });
 
     user.seedInitialUsers();
+    book.seedInitialBooks();
 };

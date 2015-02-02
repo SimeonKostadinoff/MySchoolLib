@@ -4,9 +4,13 @@
             th Заглавие
             th Автор
             th Статус
+            th
         tr(ng-repeat="book in books")
-            td {{ book.title }}
+            td
+                a(href="#/admin/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
-            td(ng-if="book.status.requstedBy == ''") В наличност
-            td(ng-if="book.status.requstedBy != ''")
-                div(ng-repeat="user in book.status.requstedBy") В {{ user }}
+            td(ng-if="book.status.requestedBy == ''") В наличност
+            td(ng-if="book.status.requestedBy != ''")
+                div(ng-repeat="user in book.status.requestedBy") В {{ user }}
+            td
+                button.close(type="button" data-dismiss="modal" aria-hidden="true") x

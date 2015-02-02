@@ -34,3 +34,6 @@ footer p {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+button.close {
+  color: #0040d0;
+}

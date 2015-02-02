@@ -3,4 +3,5 @@
         tr(ng-repeat="user in users")
             td {{ user.firstName }}
             td {{ user.lastName }}
-            td {{ user.roles }}
+            td
+             span(ng-repeat="role in user.roles") {{ user.roles }}

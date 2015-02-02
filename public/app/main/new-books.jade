@@ -1,6 +1,8 @@
-div(ng-repeat="book in books | orderBy: '-boughtDate' | limitTo: 30")
+div(ng-repeat="book in books | orderBy: '-boughtDate' | limitTo: 10")
     .row
-        .col-md-3
+        .col-md-2
             | {{ book.boughtDate | date: 'MMM d yyyy' }}
-        .col-md-9
+        .col-md-5
             a(href="#/books/{{ book._id }}") {{ book.title }}
+        .col-md-5
+            | {{ book.author }}
