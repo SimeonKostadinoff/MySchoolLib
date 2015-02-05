@@ -4,11 +4,8 @@ app.controller('ProfileCtrl', function($scope, $location, auth, identity) {
         lastName: identity.currentUser.lastName
     }
 
-   /* $scope.update = function(user) {
-        auth.update(user).then(function() {
-            $scope.firstName = user.firstName;
-            $scope.lastName = user.lastName;
-            $location.path('/');
-        });
-    }*/
+    $scope.requestedBooks = identity.currentUser.requestedBooks;
+    $scope.takenBooks = identity.currentUser.takenBooks;
+
+
 });

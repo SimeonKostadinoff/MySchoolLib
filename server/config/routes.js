@@ -10,7 +10,7 @@ module.exports = function(app) {
     app.post('/api/books',auth.isInRole('admin'), controllers.books.addNewBook);
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
-    app.put('/api/books', auth.isAuthenticated, controllers.books.addRequestFromUserToBook);
+    app.put('/api/books', auth.isAuthenticated, controllers.books.addRequestOrTakeBook);
 
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {

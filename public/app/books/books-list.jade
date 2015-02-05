@@ -33,7 +33,9 @@
             //td(ng-if="book.status.takenBy != ''") В {{ book.status.takenBy }}
 
             //TODO: need to show user.firstName instead of user._id
-            //TODO: disable the Request button if the book is taken
-            td {{ book.currentStatus }}
-            td
-                button.btn-link(ng-click="addUserRequestToBook(book)") Request
+            td  {{ book.currentStatus }}
+            td(ng-show="identity.isAuthenticated()")
+                button.btn.btn-info.btn-sm(ng-click="addRequestToBookAndUser(book)") Request
+                button.btn.btn-warning.btn-sm(ng-click="addTakenToBookAndUser(book)") Take
+                //TODO: removeUserRequestToBook
+                button.btn.btn-warning.btn-sm(ng-show="{{ book.isDisabled }}" ng-click="removeUserRequestToBook(book)") Cancel request

@@ -8,8 +8,16 @@ var userSchema = mongoose.Schema({
     salt: String,
     hashPass: String,
     roles: [String],
-    requestedBooks:[String],
-    takenBooks:[String]
+    requestedBooks:[{
+        bookID: String,
+        bookTitle: String,
+        bookAuthor: String
+    }],
+    takenBooks:[{
+        bookID: String,
+        bookTitle: String,
+        bookAuthor: String
+    }]
 });
 
 userSchema.method({
@@ -26,25 +34,32 @@ userSchema.method({
 var User = mongoose.model('User', userSchema);
 
 module.exports.seedInitialUsers = function() {
+   /* User.find({}).remove({},function(err,msg){
+     if(err){
+     console.log("Couldnt remove the users.")
+     }
+     console.log("Users removed");
+     });*/
+
     User.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find users: ' + err);
             return;
         }
 
-        if (collection.length === 3) {
+        if (collection.length <=1) {
             var salt;
             var hashedPwd;
 
             salt = encryption.generateSalt();
-            hashedPwd = encryption.generateHashedPassword(salt, 'Ivaylo');
-            User.create({username: 'ivaylo.kenov', firstName: 'Ivaylo', lastName: 'Kenov', salt: salt, hashPass: hashedPwd, roles: ['admin']});
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'slavkov_96', firstName: 'Nikolay', lastName: 'Slavkov', salt: salt, hashPass: hashedPwd, roles: ['admin'], requestedBooks:[],takenBooks: []});
             salt = encryption.generateSalt();
-            hashedPwd = encryption.generateHashedPassword(salt, 'Nikolay');
-            User.create({username: 'Nikolay.IT', firstName: 'Nikolay', lastName: 'Kostov', salt: salt, hashPass: hashedPwd, roles: ['standard']});
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'pesho69', firstName: 'Pesho', lastName: 'Peshev', salt: salt, hashPass: hashedPwd, roles: ['standard'], requestedBooks:[],takenBooks: []});
             salt = encryption.generateSalt();
-            hashedPwd = encryption.generateHashedPassword(salt, 'Doncho');
-            User.create({username: 'Doncho', firstName: 'Doncho', lastName: 'Minkov', salt: salt, hashPass: hashedPwd});
+            hashedPwd = encryption.generateHashedPassword(salt, '123456');
+            User.create({username: 'gosho', firstName: 'Gosho', lastName: 'Gosho', salt: salt, hashPass: hashedPwd, requestedBooks:[],takenBooks: []});
             console.log('Users added to database...');
         }
     });

@@ -7,4 +7,6 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks) {
             }
         })
     })
+
+
 });

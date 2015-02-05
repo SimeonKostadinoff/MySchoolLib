@@ -1,3 +1,19 @@
 .container
     .well
-        | This is your profile
+        h2  Requested books
+        table.table.table-hover
+            tr
+                th Title
+                th Author
+            tr(ng-repeat="book in requestedBooks")
+                td {{ book.bookTitle }}
+                td {{ book.bookAuthor }}
+    .well
+        h2  Taken books
+        table.table.table-hover
+            tr
+                th Title
+                th Author
+            tr(ng-repeat="book in takenBooks")
+                td {{ book.bookTitle }}
+                td {{ book.bookAuthor }}
