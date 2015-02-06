@@ -55,9 +55,9 @@ module.exports.seedInitialBooks = function() {
             console.log('Cannot find books: ' + err);
             return;
         }
-        if (collection.length <= 2) {
+        if (collection.length == 0) {
             Book.create({title: 'Клетниците' ,author: 'Виктор Юго', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
-            Book.create({title: 'Дон Кихот' ,author: 'Мигел де Сервантес', boughtDate:new Date(), log:[], status:{requestedBy:[''],takenBy:{}, returned:true, returnDate:''}});
+            Book.create({title: 'Дон Кихот' ,author: 'Мигел де Сервантес', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{}, returned:true, returnDate:''}});
             Book.create({title: 'Преспанските камбани' ,author: 'Димитър Талев', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Железният светилник' ,author: 'Димитър Талев', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Пипи дългото чорапче' ,author: 'Астрид Линдгрен', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:false, returnDate:''}});

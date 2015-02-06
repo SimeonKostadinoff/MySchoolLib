@@ -29,6 +29,23 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             return deferred.promise;
         },
+        removeRequestFromBookAndUser: function(book) {
+            var deferred = $q.defer();
+            var updatedUserRequestToBook = new BookResource(book);
+            updatedUserRequestToBook.status.requestedBy= {
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            };
+            updatedUserRequestToBook.type='removeUserRequestToBook';
+            updatedUserRequestToBook.$update().then(function() {
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
         addTakenToBookAndUser: function(book){
             var deferred = $q.defer();
             var updatedUserRequestToBook = new BookResource(book);

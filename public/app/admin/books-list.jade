@@ -3,14 +3,10 @@
         tr
             th Заглавие
             th Автор
-            th Статус
             th
         tr(ng-repeat="book in books")
             td
                 a(href="#/admin/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
-            td(ng-if="book.status.requestedBy == ''") В наличност
-            td(ng-if="book.status.requestedBy != ''")
-                div(ng-repeat="user in book.status.requestedBy") В {{ user }}
             td
-                button.close(type="button" data-dismiss="modal" aria-hidden="true") x
+                button.close(type="button" data-dismiss="modal" aria-hidden="true" ng-click="removeBook(book)") x

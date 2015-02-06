@@ -34,13 +34,12 @@ userSchema.method({
 var User = mongoose.model('User', userSchema);
 
 module.exports.seedInitialUsers = function() {
-   /* User.find({}).remove({},function(err,msg){
+    /*User.find({}).remove({},function(err,msg){
      if(err){
      console.log("Couldnt remove the users.")
      }
      console.log("Users removed");
      });*/
-
     User.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find users: ' + err);

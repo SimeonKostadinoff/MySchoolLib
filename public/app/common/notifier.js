@@ -8,6 +8,9 @@ app.factory('notifier', function(toastr) {
         },
         info: function(msg) {
             toastr.info(msg);
+        },
+        warning: function(msg) {
+            toastr.warning(msg);
         }
     }
 })

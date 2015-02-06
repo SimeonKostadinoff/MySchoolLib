@@ -40,7 +40,7 @@ module.exports = {
         });
     },
 
-    addRequestOrTakeBook: function(req,res,next){
+    addOrRemoveRequestOrTakeBook: function(req,res,next){
         var newBookData = req.body;
         if(newBookData.type == 'addUserRequestToBook'){
             Book.findByIdAndUpdate(
@@ -67,11 +67,42 @@ module.exports = {
                 {safe: true, upsert: true},
                 function(err, model) {
                     if(err){
-                        console.log("Can't find user and add requested books: "+ err);
+                        console.log("Can't find user and add requested book: "+ err);
                     }
                     res.end();
                 })
             }
+
+        if(newBookData.type == 'removeUserRequestToBook'){
+            Book.findByIdAndUpdate(
+                req.body._id,
+                {$pull: {"status.requestedBy": {
+                    userID: newBookData.status.requestedBy.userID,
+                    userFirstName: newBookData.status.requestedBy.userFirstName,
+                    userLastName: newBookData.status.requestedBy.userLastName
+                }}},
+                {safe: true, upsert: true},
+                function(err, model) {
+                    if(err){
+                        console.log("Can't find book and remove request: "+ err);
+                    }
+                });
+
+            User.findByIdAndUpdate(
+                req.user._id,
+                {$pull: {"requestedBooks": {
+                    bookID: newBookData._id,
+                    bookTitle: newBookData.title,
+                    bookAuthor: newBookData.author
+                }}},
+                {safe: true, upsert: true},
+                function(err, model) {
+                    if(err){
+                        console.log("Can't find user and remove requested book: "+ err);
+                    }
+                    res.end();
+                })
+        }
 
 
         if(newBookData.type == 'addTakenByToBook'){

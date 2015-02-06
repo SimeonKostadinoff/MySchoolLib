@@ -35,7 +35,9 @@
             //TODO: need to show user.firstName instead of user._id
             td  {{ book.currentStatus }}
             td(ng-show="identity.isAuthenticated()")
-                button.btn.btn-info.btn-sm(ng-click="addRequestToBookAndUser(book)") Request
-                button.btn.btn-warning.btn-sm(ng-click="addTakenToBookAndUser(book)") Take
+                button.btn.btn-info.btn-sm(ng-show="{{ book.canBeRequested }}" ng-click="addRequestToBookAndUser(book)") Request
                 //TODO: removeUserRequestToBook
-                button.btn.btn-warning.btn-sm(ng-show="{{ book.isDisabled }}" ng-click="removeUserRequestToBook(book)") Cancel request
+                button.btn.btn-warning.btn-sm(ng-show="{{ book.canRequestBeCanceled }}" ng-click="removeRequestFromBookAndUser(book)") Cancel request
+                //TODO: move this button to the admin panel
+                //button.btn.btn-warning.btn-sm(ng-click="addTakenToBookAndUser(book)") Take
+
