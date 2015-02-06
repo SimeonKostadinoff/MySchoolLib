@@ -1,29 +1,30 @@
-app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, $window, identity, UsersResource) {
+app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, $window, identity, UsersResource, currentBook) {
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
 
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
 
-            if ((book.status.requestedBy == null || book.status.requestedBy == '' || book.status.requestedBy == "")
-                && (book.status.takenBy == null || book.status.takenBy == '' || book.status.takenBy == "")) {
+            if (!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
                 book.currentStatus = 'в наличност';
-                book.isDisabled = false;
             }
-            else if ((book.status.requestedBy != null || book.status.requestedBy != '' || book.status.requestedBy != "") && (book.status.takenBy == null || book.status.takenBy == '' || book.status.takenBy == "")) {
-                book.currentStatus = book.status.requestedBy;
-                book.isDisabled = false;
-                if(identity.isAuthenticated()){
-                    //TODO: if the user already have request to the book he have to be able to cancel it
-                    if(true){
 
+            //TODO: maybe needs optimization
+            if (currentBook.isBookRequested(book)) {
+                book.currentStatus = 'Requested by: ';
+                book.status.requestedBy.forEach(function(request){
+                    if(book.currentStatus != 'Requested by: ') {
+                        book.currentStatus += ', ';
                     }
-                }
+                    book.currentStatus += request.userFirstName + ' ' + request.userLastName;
+                })
             }
-            else {
-                book.currentStatus = book.status.takenBy;
-                book.isDisabled = true;
+            if(currentBook.isBookTaken(book)) {
+                book.currentStatus = 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
+                book.isDisabled = false;
             }
+            book.canBeRequested = currentBook.canBeRequested(book);
+            book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
 
         });
     });
@@ -32,16 +33,22 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.addRequestToBookAndUser = function(book) {
         bookFactory.addRequestToBookAndUser(book).then(function () {
             $window.location.reload();
-            notifier.success("Request done successfully!");
+            notifier.success(book.title + " requested!");
 
         });
+    };
+    $scope.removeRequestFromBookAndUser = function(book){
+        bookFactory.removeRequestFromBookAndUser(book).then(function(){
+            $window.location.reload();
+            notifier.warning(book.title + " request canceled!");
+        })
     }
     $scope.addTakenToBookAndUser = function(book){
         bookFactory.addTakenToBookAndUser(book).then(function(){
             $window.location.reload();
-            notifier.success("Book taken successfully!");
+            notifier.success("Book taken " + book.title + "!");
         })
-    }
+    };
 
 
 
