@@ -17,6 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.0.2",
+    "connect-mongo": "^0.7.0",
     "cookie-parser": "^1.0.1",
     "express": "^4.0.0",
     "express-session": "^1.0.2",
