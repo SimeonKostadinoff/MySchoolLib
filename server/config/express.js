@@ -5,13 +5,16 @@ var express = require('express'),
     session = require('express-session'),
     passport = require('passport'),
     mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo')(session);
+    MongoStore = require('connect-mongo')(session),
+    favicon = require('serve-favicon');
 
 module.exports = function(app, config) {
+    app.use(favicon(__dirname + '../../../public/images/favicons.png'));
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
     app.use(cookieParser());
     app.use(bodyParser.json());
+
 
     var connection = mongoose.createConnection(config.db);
 

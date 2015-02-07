@@ -6,7 +6,11 @@ var booksSchema = mongoose.Schema({
     boughtDate: Date,
     tags: [String],
     log:[{
-        takenBy: String,
+        takenBy: {
+            userID: String,
+            userFirstName: String,
+            userLastName: String
+        },
         takenDate: Date,
         returnDate: Date
     }],

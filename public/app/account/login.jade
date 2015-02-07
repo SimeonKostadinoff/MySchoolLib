@@ -3,7 +3,7 @@
         .form-group
             input.form-control(type="text", placeholder="Username", ng-model="user.username")
             input.form-control(type="password", placeholder="Password", ng-model="user.password")
-        button.btn.btn-primary(ng-click="login(user)") Вход
+        button.btn.btn-primary.login-btn(ng-click="login(user)") Вход
 
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li.dropdown

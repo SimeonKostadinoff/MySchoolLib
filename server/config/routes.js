@@ -12,6 +12,8 @@ module.exports = function(app) {
     app.get('/api/books/:id', controllers.books.getBookById);
     app.put('/api/books', auth.isAuthenticated, controllers.books.addOrRemoveRequestOrTakeBook);
 
+    //app.post('/api/admin/books', auth.isInRole('admin'), controllers.books.removeBook);
+
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
