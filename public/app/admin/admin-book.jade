@@ -7,6 +7,6 @@
             th   Дата на взимане
             th   Дата на връщане
         tr(ng-repeat="log in book.log")
-            td {{ log.takenBy }}
-            td {{ log.takenDate }}
-            td {{ log.returnDate }}
+            td {{ log.takenBy.userFirstName }} {{ log.takenBy.userLastName }}
+            td {{ log.takenDate | date }}
+            td {{ log.returnDate | date }}

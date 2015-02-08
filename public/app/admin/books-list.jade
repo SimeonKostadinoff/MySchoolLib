@@ -6,7 +6,6 @@
         .col-md-2 Сортирай
         .col-md-4
             select.form-control(ng-model="sort")
-                option(value=" " ng-selected="'true'") По подразбиране
                 option(value="title") Заглавие
                 option(value="author") Автор
     br
@@ -15,18 +14,24 @@
             th Заглавие
             th Автор
             th
+            th
         tr(ng-repeat="book in books | filter: search | orderBy: sort")
             td
                 a(href="#/admin/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
-            td(ng-show="isBookAvailable(book)") в наличност
+
+            td(ng-show="isBookAvailable(book)")
+             .well.well-special в наличност
+
             td.small-select(ng-show="canBookBeTaken(book)")
-                    select.form-control(ng-model="userData" )
+                    select.form-control#select(ng-model="userData")
                         option(ng-repeat="request in book.status.requestedBy" value="{{ request }}") {{ request.userFirstName }} {{ request.userLastName }}
                     button.btn.btn-warning.btn-sm(ng-click="giveBookToUser(book,userData)") Give
                     //TODO: needs stylization
+
             td(ng-show="isBookTaken(book)")
-                .well.colo-md-2    в {{ book.status.takenBy.userFirstName }} {{ book.status.takenBy.userLastName }}
+                .well.well-special    в {{ book.status.takenBy.userFirstName }} {{ book.status.takenBy.userLastName }}
                 button.btn.btn-warning.btn-sm(ng-click="returnBook(book)") Return
+
             td
                 button.close(type="button" data-dismiss="modal" aria-hidden="true" ng-click="removeBook(book)") x

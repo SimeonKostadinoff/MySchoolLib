@@ -49,9 +49,11 @@ button.close {
   margin-bottom: 7px;
 }
 td > .well {
-  display: inline;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
+}
+td > .well-special {
+  display: inline-block;
   margin-right: 20px;
 }

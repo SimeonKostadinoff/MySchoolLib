@@ -66,7 +66,7 @@ module.exports.seedInitialBooks = function() {
             Book.create({title: 'Железният светилник' ,author: 'Димитър Талев', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Пипи дългото чорапче' ,author: 'Астрид Линдгрен', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:false, returnDate:''}});
             Book.create({title: 'Ян Бибиян' ,author: 'Елин Пелин', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{}, returned:true, returnDate:''}});
-            Book.create({title: 'Шифарът на Леонардо' ,author: 'Дан Браун', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
+            Book.create({title: 'Шифърът на Леонардо' ,author: 'Дан Браун', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Шестото клеймо' ,author: 'Дан Браун', boughtDate:new Date(), log:[],status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Цифрова крепост' ,author: 'Дан Браун', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});
             Book.create({title: 'Хамлет' ,author: 'Уилям Шекспир', boughtDate:new Date(), log:[], status:{requestedBy:[],takenBy:{},returned:true, returnDate:''}});

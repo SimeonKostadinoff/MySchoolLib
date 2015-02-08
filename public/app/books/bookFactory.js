@@ -3,13 +3,11 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
         "&": "&amp;",
         "<": "&lt;",
         ">": "&gt;",
-        '"': '&quot;',
-        "'": '&#39;',
         "/": '&#x2F;'
     };
 
     String.prototype.escapeHTML = function() {
-        return String(this).replace(/[&<>"'\/]/g, function (s) {
+        return String(this).replace(/[&<>\/]/g, function (s) {
             return __entityMap[s];
         });
     }

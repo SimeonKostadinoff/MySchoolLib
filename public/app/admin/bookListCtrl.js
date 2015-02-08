@@ -10,24 +10,37 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
         return !currentBook.isBookRequested(book) && !currentBook.isBookTaken(book);
     }
     $scope.isBookTaken = function(book){
-        return !currentBook.isBookRequested(book) && currentBook.isBookTaken(book)
+        return currentBook.isBookTaken(book)
     }
     $scope.canBookBeTaken = function(book){
         return currentBook.isBookRequested(book) && !currentBook.isBookTaken(book);
     }
 
     $scope.giveBookToUser = function(book, userData){
-        userData=JSON.parse(userData);
-        bookFactory.addTakenToBookAndUser(book, userData).then(function(){
-            $window.location.reload();
-            notifier.success("Book given to " + userData.userFirstName + "!");
-        })
+        if(userData!=undefined) {
+            userData = JSON.parse(userData);
+            bookFactory.addTakenToBookAndUser(book, userData).then(function () {
+                notifier.success("Book given to " + userData.userFirstName + "!");
+                book.status.takenBy = {
+                    userID: userData.userID,
+                    userFirstName: userData.userFirstName,
+                    userLastName: userData.userLastName,
+                    takenDate: new Date()
+                }
+
+                book.status.requestedBy = [];
+            })
+        }
+        else{
+            notifier.error("Не е избран потребител!")
+        }
     };
 
     $scope.returnBook = function(book){
         bookFactory.returnBook(book).then(function(){
-            $window.location.reload();
             notifier.warning("Book returned!");
+            book.status.takenBy=null;
+            book.status.requestedBy=null;
         })
     };
 });

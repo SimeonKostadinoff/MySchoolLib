@@ -4,7 +4,9 @@ app.factory('currentBook', function(identity){
         if(book.status.requestedBy == null
             || book.status.requestedBy == undefined
             || book.status.requestedBy == ''
-            ||book.status.requestedBy == "") return false;
+            ||book.status.requestedBy == ""
+            || book.status.requestedBy == []
+            || book.status.takenBy == {}) return false;
         else return true;
         },
 
@@ -12,7 +14,9 @@ app.factory('currentBook', function(identity){
             if(book.status.takenBy == null
                 || book.status.takenBy == undefined
                 || book.status.takenBy == ''
-                ||book.status.takenBy == "") return false;
+                ||book.status.takenBy == ""
+                || book.status.takenBy == {}
+                || book.status.takenBy == []) return false;
             else return true;
         },
 

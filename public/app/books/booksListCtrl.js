@@ -32,23 +32,40 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
     $scope.addRequestToBookAndUser = function(book) {
         bookFactory.addRequestToBookAndUser(book).then(function () {
-            $window.location.reload();
             notifier.success(book.title + " requested!");
+            book.canBeRequested=false;
+            book.canRequestBeCanceled=true;
+
+            if (book.currentStatus == 'в наличност'){
+                book.currentStatus = 'Requested by: ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName;
+            }
+            else{
+                book.currentStatus += ', ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName;
+            }
 
         });
     };
     $scope.removeRequestFromBookAndUser = function(book){
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
-            $window.location.reload();
+            book.canBeRequested=true;
+            book.canRequestBeCanceled=false;
             notifier.warning(book.title + " request canceled!");
+            if(book.currentStatus == ('Requested by: ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName)){
+                book.currentStatus = 'в наличност';
+            }
+            else{
+                //TODO: fix the bug with the commas
+                book.currentStatus = book.currentStatus.replace(' ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName,"");
+            }
         })
     }
-    $scope.addTakenToBookAndUser = function(book){
-        bookFactory.addTakenToBookAndUser(book).then(function(){
-            $window.location.reload();
-            notifier.success("Book taken " + book.title + "!");
-        })
-    };
+
+    $scope.canBeRequested = function(book){
+        return book.canBeRequested;
+    }
+    $scope.canRequestBeCanceled = function(book){
+        return book.canRequestBeCanceled;
+    }
 
 
 
