@@ -27,14 +27,8 @@
                 a(href="#/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
             td {{ book.boughtDate | date }}
-            //td(ng-if="book.status.requestedBy ==''" && "book.status.takenBy ==''") В наличност
-            //td(ng-if="book.status.requestedBy != ''")
-            //    div(ng-repeat="user in book.status.requestedBy") Requested by {{ user }}
-            //td(ng-if="book.status.takenBy != ''") В {{ book.status.takenBy }}
-
-            //TODO: need to show user.firstName instead of user._id
             td
-              .well {{ book.currentStatus }}
+              .well {{ currentStatus(book) }}
             td(ng-show="identity.isAuthenticated()")
                 button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
                 button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)") Cancel request

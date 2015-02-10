@@ -18,7 +18,9 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             var book = new BookResource(book);
             book.title=book.title.escapeHTML();
             book.author=book.author.escapeHTML();
-            book.tags=book.tags.escapeHTML();
+            //TODO: book.tags need to be done correctly
+            if(book.tags) book.tags=book.tags.escapeHTML();
+
             book.$save().then(function() {
                 deferred.resolve();
             }, function(response) {
@@ -29,7 +31,7 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
         addRequestToBookAndUser: function(book) {
             var deferred = $q.defer();
             var updatedUserRequestToBook = new BookResource(book);
-                updatedUserRequestToBook.status.requestedBy= {
+                updatedUserRequestToBook.requestedBy= {
                     userID: identity.currentUser._id,
                     userFirstName: identity.currentUser.firstName,
                     userLastName: identity.currentUser.lastName
@@ -47,7 +49,7 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
         removeRequestFromBookAndUser: function(book) {
             var deferred = $q.defer();
             var userRequestToRemove = new BookResource(book);
-            userRequestToRemove.status.requestedBy= {
+            userRequestToRemove.requestedBy= {
                 userID: identity.currentUser._id,
                 userFirstName: identity.currentUser.firstName,
                 userLastName: identity.currentUser.lastName

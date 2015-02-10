@@ -35,18 +35,6 @@ var Book = mongoose.model('Book', booksSchema);
 
 
 
-/*
-module.exports.addNewBook = function(title,author,boughtDate,tags){
-    Book.find({}).exec(function(err,collection){
-        if(err){
-            console.log('Cannot find books: ' + err);
-            return;
-        }
-        else{
-            Book.create({title: title,author: author, boughtDate:boughtDate,tags: tags});
-        }
-    })
-}*/
 module.exports.seedInitialBooks = function() {
     /*Book.find({}).remove({},function(err,msg){
         if(err){

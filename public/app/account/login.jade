@@ -5,7 +5,12 @@
             input.form-control(type="password", placeholder="Password", ng-model="user.password")
         button.btn.btn-primary.login-btn(ng-click="login(user)") Вход
 
+
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
+        li(ng-show="identity.currentUser.isLibAdmin()")
+            a(href="#/admin/books") Книги+
+        li(ng-show="identity.currentUser.isLibAdmin()")
+            a(href="#/admin/add-new-book") Добавяне на нова книга
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
                 | {{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}
@@ -13,10 +18,7 @@
             ul.dropdown-menu
                 li(ng-show="identity.currentUser.isAdmin()")
                     a(href="#/admin/users") Потребители
-                li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/books") Книги+
-                li(ng-show="identity.currentUser.isAdmin()")
-                    a(href="#/admin/add-new-book") Добавяне на нова книга
+
                 li(ng-show="identity.isAuthenticated()")
                    a(href="#/profile") Профил
                 li

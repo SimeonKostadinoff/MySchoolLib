@@ -1,4 +1,8 @@
 app.factory('notifier', function(toastr) {
+    toastr.options.showMethod = 'slideDown';
+    toastr.options.hideMethod = 'slideUp';
+    toastr.options.timeOut = 1000;
+    toastr.options.extendedTimeOut = 0;
     return {
         success: function(msg) {
             toastr.success(msg);

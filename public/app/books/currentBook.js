@@ -23,11 +23,10 @@ app.factory('currentBook', function(identity){
         isBookRequestedByCurrentUser = function(book){
             if(identity.isAuthenticated()) {
                 var isRequested = false;
-                book.status.requestedBy.forEach(function (request) {
-                    if (request.userID == identity.currentUser._id) {
-                        isRequested = true;
-                    }
-                })
+                $.each(book.status.requestedBy, function(index, value) {
+                    if (value.userID == identity.currentUser._id)    isRequested = true;
+                });
+
                 return isRequested;
             }
             else return false;
@@ -47,11 +46,8 @@ app.factory('currentBook', function(identity){
         },
 
         canBeRequested = function(book){
-        if(!isBookTaken(book)
-            && !isBookRequestedByCurrentUser(book)
-            && identity.isAuthenticated()){
-            return true;
-            }
+        if(!isBookRequestedByCurrentUser(book)
+            && identity.isAuthenticated()) return true;
         };
 
 

@@ -1,152 +1,59 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   'mongoose-version',
-1 verbose cli   '3.8.8' ]
+1 verbose cli   'update',
+1 verbose cli   '-g',
+1 verbose cli   'nodemon' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
 4 verbose node symlink C:\Program Files\nodejs\\node.exe
-5 warn package.json MySchoolLib@0.0.1 No repository field.
-6 warn package.json MySchoolLib@0.0.1 No README data
-7 verbose readDependencies using package.json deps
-8 verbose cache add [ 'mongoose-version', null ]
-9 verbose cache add name=undefined spec="mongoose-version" args=["mongoose-version",null]
-10 verbose parsed url { protocol: null,
-10 verbose parsed url   slashes: null,
-10 verbose parsed url   auth: null,
-10 verbose parsed url   host: null,
-10 verbose parsed url   port: null,
-10 verbose parsed url   hostname: null,
-10 verbose parsed url   hash: null,
-10 verbose parsed url   search: null,
-10 verbose parsed url   query: null,
-10 verbose parsed url   pathname: 'mongoose-version',
-10 verbose parsed url   path: 'mongoose-version',
-10 verbose parsed url   href: 'mongoose-version' }
-11 verbose cache add [ '3.8.8', null ]
-12 verbose cache add name=undefined spec="3.8.8" args=["3.8.8",null]
-13 verbose parsed url { protocol: null,
-13 verbose parsed url   slashes: null,
-13 verbose parsed url   auth: null,
-13 verbose parsed url   host: null,
-13 verbose parsed url   port: null,
-13 verbose parsed url   hostname: null,
-13 verbose parsed url   hash: null,
-13 verbose parsed url   search: null,
-13 verbose parsed url   query: null,
-13 verbose parsed url   pathname: '3.8.8',
-13 verbose parsed url   path: '3.8.8',
-13 verbose parsed url   href: '3.8.8' }
-14 silly lockFile 21fd8d10-mongoose-version mongoose-version
-15 verbose lock mongoose-version C:\Users\Nikolay Slavkov\AppData\Roaming\npm-cache\21fd8d10-mongoose-version.lock
-16 silly lockFile ff91f6a1-3-8-8 3.8.8
-17 verbose lock 3.8.8 C:\Users\Nikolay Slavkov\AppData\Roaming\npm-cache\ff91f6a1-3-8-8.lock
-18 silly lockFile ff91f6a1-3-8-8 3.8.8
-19 silly lockFile ff91f6a1-3-8-8 3.8.8
-20 silly lockFile 21fd8d10-mongoose-version mongoose-version
-21 silly lockFile 21fd8d10-mongoose-version mongoose-version
-22 verbose addNamed [ '3.8.8', '' ]
-23 verbose addNamed [ null, '*' ]
-24 silly lockFile ed8ecaa4-3-8-8 3.8.8@
-25 verbose lock 3.8.8@ C:\Users\Nikolay Slavkov\AppData\Roaming\npm-cache\ed8ecaa4-3-8-8.lock
-26 verbose addNamed [ 'mongoose-version', '' ]
-27 verbose addNamed [ null, '*' ]
-28 silly lockFile aaf38f77-mongoose-version mongoose-version@
-29 verbose lock mongoose-version@ C:\Users\Nikolay Slavkov\AppData\Roaming\npm-cache\aaf38f77-mongoose-version.lock
-30 silly addNameRange { name: '3.8.8', range: '*', hasData: false }
-31 verbose request where is /3.8.8
-32 verbose request registry https://registry.npmjs.org/
-33 verbose request id 2f0f10d615d6d8de
-34 verbose url raw /3.8.8
-35 verbose url resolving [ 'https://registry.npmjs.org/', './3.8.8' ]
-36 verbose url resolved https://registry.npmjs.org/3.8.8
-37 verbose request where is https://registry.npmjs.org/3.8.8
-38 info trying registry request attempt 1 at 13:00:30
-39 http GET https://registry.npmjs.org/3.8.8
-40 silly addNameRange { name: 'mongoose-version', range: '*', hasData: false }
-41 verbose request where is /mongoose-version
-42 verbose request registry https://registry.npmjs.org/
-43 verbose url raw /mongoose-version
-44 verbose url resolving [ 'https://registry.npmjs.org/', './mongoose-version' ]
-45 verbose url resolved https://registry.npmjs.org/mongoose-version
-46 verbose request where is https://registry.npmjs.org/mongoose-version
-47 info trying registry request attempt 1 at 13:00:30
-48 verbose etag "DDH9JWKRDV0VPZRCUQPT00SFB"
-49 http GET https://registry.npmjs.org/mongoose-version
-50 http 304 https://registry.npmjs.org/mongoose-version
-51 silly registry.get cb [ 304,
-51 silly registry.get   { date: 'Sat, 31 Jan 2015 11:00:40 GMT',
-51 silly registry.get     server: 'Apache',
-51 silly registry.get     via: '1.1 varnish',
-51 silly registry.get     'last-modified': 'Sat, 31 Jan 2015 11:00:40 GMT',
-51 silly registry.get     'cache-control': 'max-age=60',
-51 silly registry.get     etag: '"DDH9JWKRDV0VPZRCUQPT00SFB"',
-51 silly registry.get     age: '15',
-51 silly registry.get     'x-served-by': 'cache-lcy1131-LCY',
-51 silly registry.get     'x-cache': 'HIT',
-51 silly registry.get     'x-cache-hits': '1',
-51 silly registry.get     'x-timer': 'S1422702040.692243,VS0,VE0',
-51 silly registry.get     vary: 'Accept',
-51 silly registry.get     'content-length': '0',
-51 silly registry.get     'keep-alive': 'timeout=10, max=50',
-51 silly registry.get     connection: 'Keep-Alive' } ]
-52 verbose etag https://registry.npmjs.org/mongoose-version from cache
-53 silly addNameRange number 2 { name: 'mongoose-version', range: '*', hasData: true }
-54 silly addNameRange versions [ 'mongoose-version',
-54 silly addNameRange   [ '0.1.0', '0.1.1', '0.2.0', '0.2.1', '0.2.2', '0.2.3', '0.2.4' ] ]
-55 verbose addNamed [ 'mongoose-version', '0.2.4' ]
-56 verbose addNamed [ '0.2.4', '0.2.4' ]
-57 silly lockFile 5dc6a368-mongoose-version-0-2-4 mongoose-version@0.2.4
-58 verbose lock mongoose-version@0.2.4 C:\Users\Nikolay Slavkov\AppData\Roaming\npm-cache\5dc6a368-mongoose-version-0-2-4.lock
-59 silly lockFile 5dc6a368-mongoose-version-0-2-4 mongoose-version@0.2.4
-60 silly lockFile 5dc6a368-mongoose-version-0-2-4 mongoose-version@0.2.4
-61 silly lockFile aaf38f77-mongoose-version mongoose-version@
-62 silly lockFile aaf38f77-mongoose-version mongoose-version@
-63 http 404 https://registry.npmjs.org/3.8.8
-64 verbose headers { date: 'Sat, 31 Jan 2015 11:00:40 GMT',
-64 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-64 verbose headers   'content-type': 'application/json',
-64 verbose headers   'cache-control': 'max-age=0',
-64 verbose headers   'content-length': '52',
-64 verbose headers   'accept-ranges': 'bytes',
-64 verbose headers   via: '1.1 varnish',
-64 verbose headers   age: '0',
-64 verbose headers   'x-served-by': 'cache-lcy1129-LCY',
-64 verbose headers   'x-cache': 'MISS',
-64 verbose headers   'x-cache-hits': '0',
-64 verbose headers   'x-timer': 'S1422702040.679695,VS0,VE177',
-64 verbose headers   'keep-alive': 'timeout=10, max=50',
-64 verbose headers   connection: 'Keep-Alive' }
-65 silly registry.get cb [ 404,
-65 silly registry.get   { date: 'Sat, 31 Jan 2015 11:00:40 GMT',
-65 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-65 silly registry.get     'content-type': 'application/json',
-65 silly registry.get     'cache-control': 'max-age=0',
-65 silly registry.get     'content-length': '52',
-65 silly registry.get     'accept-ranges': 'bytes',
-65 silly registry.get     via: '1.1 varnish',
-65 silly registry.get     age: '0',
-65 silly registry.get     'x-served-by': 'cache-lcy1129-LCY',
-65 silly registry.get     'x-cache': 'MISS',
-65 silly registry.get     'x-cache-hits': '0',
-65 silly registry.get     'x-timer': 'S1422702040.679695,VS0,VE177',
-65 silly registry.get     'keep-alive': 'timeout=10, max=50',
-65 silly registry.get     connection: 'Keep-Alive' } ]
-66 silly lockFile ed8ecaa4-3-8-8 3.8.8@
-67 silly lockFile ed8ecaa4-3-8-8 3.8.8@
-68 error 404 404 Not Found: 3.8.8
-68 error 404
-68 error 404 '3.8.8' is not in the npm registry.
-68 error 404 You should bug the author to publish it
-68 error 404 It was specified as a dependency of 'MySchoolLib'
-68 error 404
-68 error 404 Note that you can also install from a
-68 error 404 tarball, folder, or http url, or git url.
-69 error System Windows_NT 6.1.7601
-70 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "mongoose-version" "3.8.8"
-71 error cwd C:\Users\Nikolay Slavkov\WebstormProjects\MySchoolLib
-72 error node -v v0.10.35
-73 error npm -v 1.4.28
-74 error code E404
-75 verbose exit [ 1, true ]
+5 verbose request where is /nodemon
+6 verbose request registry https://registry.npmjs.org/
+7 verbose request id 0b090c71317931d4
+8 verbose url raw /nodemon
+9 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
+10 verbose url resolved https://registry.npmjs.org/nodemon
+11 verbose request where is https://registry.npmjs.org/nodemon
+12 info trying registry request attempt 1 at 17:36:54
+13 verbose etag "B9UAAVCG5RUDBNADGPWAOMYA"
+14 http GET https://registry.npmjs.org/nodemon
+15 http 200 https://registry.npmjs.org/nodemon
+16 silly registry.get cb [ 200,
+16 silly registry.get   { date: 'Tue, 10 Feb 2015 15:36:56 GMT',
+16 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+16 silly registry.get     etag: '"7UI5EW1JUZRWKQHADM2Q5DHIC"',
+16 silly registry.get     'content-type': 'application/json',
+16 silly registry.get     'cache-control': 'max-age=60',
+16 silly registry.get     'content-length': '145480',
+16 silly registry.get     'accept-ranges': 'bytes',
+16 silly registry.get     via: '1.1 varnish',
+16 silly registry.get     age: '49',
+16 silly registry.get     'x-served-by': 'cache-ams4124-AMS',
+16 silly registry.get     'x-cache': 'HIT',
+16 silly registry.get     'x-cache-hits': '2',
+16 silly registry.get     'x-timer': 'S1423582616.734053,VS0,VE0',
+16 silly registry.get     vary: 'Accept',
+16 silly registry.get     'keep-alive': 'timeout=10, max=50',
+16 silly registry.get     connection: 'Keep-Alive' } ]
+17 info outdated updating [ [ 'C:\\Users\\Nikolay Slavkov\\AppData\\Roaming\\npm',
+17 info outdated     'nodemon',
+17 info outdated     '1.2.1',
+17 info outdated     '1.3.6',
+17 info outdated     '1.3.6',
+17 info outdated     'latest' ] ]
+18 error Failed to parse json
+18 error Unexpected end of input
+19 error File: C:\Users\Nikolay Slavkov\AppData\Roaming\npm\node_modules\express\node_modules\type-is\package.json
+20 error Failed to parse package.json data.
+20 error package.json must be actual JSON, not just JavaScript.
+20 error
+20 error This is not a bug in npm.
+20 error Tell the package author to fix their package.json file. JSON.parse
+21 error System Windows_NT 6.1.7601
+22 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "update" "-g" "nodemon"
+23 error cwd C:\Users\Nikolay Slavkov\WebstormProjects\MySchoolLib
+24 error node -v v0.10.35
+25 error npm -v 1.4.28
+26 error file C:\Users\Nikolay Slavkov\AppData\Roaming\npm\node_modules\express\node_modules\type-is\package.json
+27 error code EJSONPARSE
+28 verbose exit [ 1, true ]

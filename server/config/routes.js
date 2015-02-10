@@ -7,7 +7,7 @@ module.exports = function(app) {
    // app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
     //app.get('/api/users/:id',controllers.users.getUserById);
 
-    app.post('/api/books',auth.isInRole('admin'), controllers.books.addNewBook);
+    app.post('/api/books',auth.isInRole('libAdmin'), controllers.books.addNewBook);
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
     app.put('/api/books', auth.isAuthenticated, controllers.books.addOrRemoveRequestOrTakeBook);

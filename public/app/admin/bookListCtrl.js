@@ -27,7 +27,6 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
                     userLastName: userData.userLastName,
                     takenDate: new Date()
                 }
-
                 book.status.requestedBy = [];
             })
         }

@@ -34,12 +34,12 @@ userSchema.method({
 var User = mongoose.model('User', userSchema);
 
 module.exports.seedInitialUsers = function() {
-    /*User.find({}).remove({},function(err,msg){
-     if(err){
-     console.log("Couldnt remove the users.")
-     }
-     console.log("Users removed");
-     });*/
+       /* User.find({}).remove({},function(err,msg){
+            if(err){
+                console.log("Couldnt remove the users.")
+            }
+            console.log("Users removed");
+        });*/
     User.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find users: ' + err);
@@ -52,13 +52,13 @@ module.exports.seedInitialUsers = function() {
 
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'slavkov_96', firstName: 'Nikolay', lastName: 'Slavkov', salt: salt, hashPass: hashedPwd, roles: ['admin'], requestedBooks:[],takenBooks: []});
+            User.create({username: 'slavkov_96', firstName: 'Nikolay', lastName: 'Slavkov', salt: salt, hashPass: hashedPwd, roles: ['admin', 'libAdmin'], requestedBooks:[],takenBooks: []});
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
             User.create({username: 'pesho69', firstName: 'Pesho', lastName: 'Peshev', salt: salt, hashPass: hashedPwd, roles: ['standard'], requestedBooks:[],takenBooks: []});
             salt = encryption.generateSalt();
             hashedPwd = encryption.generateHashedPassword(salt, '123456');
-            User.create({username: 'gosho', firstName: 'Gosho', lastName: 'Gosho', salt: salt, hashPass: hashedPwd, requestedBooks:[],takenBooks: []});
+            User.create({username: 'gosho', firstName: 'Gosho', lastName: 'Gosho', salt: salt, hashPass: hashedPwd,roles: ['libAdmin'], requestedBooks:[],takenBooks: []});
             console.log('Users added to database...');
         }
     });

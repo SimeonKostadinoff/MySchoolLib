@@ -53,9 +53,9 @@ module.exports = {
             Book.findByIdAndUpdate(
                 req.body._id,
                 {$push: {"status.requestedBy": {
-                    userID: newBookData.status.requestedBy.userID,
-                    userFirstName: newBookData.status.requestedBy.userFirstName,
-                    userLastName: newBookData.status.requestedBy.userLastName
+                    userID: newBookData.requestedBy.userID,
+                    userFirstName: newBookData.requestedBy.userFirstName,
+                    userLastName: newBookData.requestedBy.userLastName
                 }}},
                 {safe: true, upsert: true},
                 function(err, model) {
@@ -85,9 +85,9 @@ module.exports = {
             Book.findByIdAndUpdate(
                 req.body._id,
                 {$pull: {"status.requestedBy": {
-                    userID: newBookData.status.requestedBy.userID,
-                    userFirstName: newBookData.status.requestedBy.userFirstName,
-                    userLastName: newBookData.status.requestedBy.userLastName
+                    userID: newBookData.requestedBy.userID,
+                    userFirstName: newBookData.requestedBy.userFirstName,
+                    userLastName: newBookData.requestedBy.userLastName
                 }}},
                 {safe: true, upsert: true},
                 function(err, model) {

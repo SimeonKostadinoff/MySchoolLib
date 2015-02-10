@@ -4,61 +4,68 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
-
-            if (!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
-                book.currentStatus = 'в наличност';
-            }
-
-            //TODO: maybe needs optimization
-            if (currentBook.isBookRequested(book)) {
-                book.currentStatus = 'Requested by: ';
-                book.status.requestedBy.forEach(function(request){
-                    if(book.currentStatus != 'Requested by: ') {
-                        book.currentStatus += ', ';
-                    }
-                    book.currentStatus += request.userFirstName + ' ' + request.userLastName;
-                })
-            }
-            if(currentBook.isBookTaken(book)) {
-                book.currentStatus = 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
-                book.isDisabled = false;
-            }
             book.canBeRequested = currentBook.canBeRequested(book);
             book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
-
         });
     });
+    $scope.currentStatus = function(book){
+        if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
 
+        if(currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
+            var status= 'Requested by: ';
+            $.each(book.status.requestedBy, function(index, value){
+                status += value.userFirstName + ' ' + value.userLastName + ', ';
+            });
+            return status;
+        }
+        if(currentBook.isBookTaken(book)){
+            return 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
+        }
+
+
+
+    }
 
     $scope.addRequestToBookAndUser = function(book) {
         bookFactory.addRequestToBookAndUser(book).then(function () {
             notifier.success(book.title + " requested!");
             book.canBeRequested=false;
             book.canRequestBeCanceled=true;
+            book.status.requestedBy.push({
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            });
 
-            if (book.currentStatus == 'в наличност'){
-                book.currentStatus = 'Requested by: ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName;
-            }
-            else{
-                book.currentStatus += ', ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName;
-            }
-
+            identity.currentUser.requestedBooks.push({
+                bookID: book._id,
+                bookTitle: book.title,
+                bookAuthor: book.author
+            })
         });
     };
     $scope.removeRequestFromBookAndUser = function(book){
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
+            notifier.warning(book.title + " request canceled!");
             book.canBeRequested=true;
             book.canRequestBeCanceled=false;
-            notifier.warning(book.title + " request canceled!");
-            if(book.currentStatus == ('Requested by: ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName)){
-                book.currentStatus = 'в наличност';
-            }
-            else{
-                //TODO: fix the bug with the commas
-                book.currentStatus = book.currentStatus.replace(' ' + identity.currentUser.firstName + ' ' + identity.currentUser.lastName,"");
-            }
+
+            $.each(book.status.requestedBy, function(i){
+                if(book.status.requestedBy[i].userID === identity.currentUser._id) {
+                    book.status.requestedBy.splice(i,1);
+                    return false;
+                }
+            });
+
+            $.each(identity.currentUser.requestedBooks, function(i){
+                if(identity.currentUser.requestedBooks[i].bookID === book._id) {
+                    identity.currentUser.requestedBooks.splice(i,1);
+                    return false;
+                }
+            });
         })
     }
+
 
     $scope.canBeRequested = function(book){
         return book.canBeRequested;
@@ -66,24 +73,5 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
     }
-
-
-
-
-    $scope.getUserById = function(id){
-        var user=UsersResource(user._id);
-                if(user._id === id){
-                    return user.firstName + ' ' + user.lastName;
-                }
-                else{
-                    return "I cant find user with this ID";
-                }
-    }
-
-
-
-
-
-
 
 });

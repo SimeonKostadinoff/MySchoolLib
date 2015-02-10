@@ -9,6 +9,11 @@ app.config(function($routeProvider, $locationProvider) {
                 return auth.isAuthorizedForRole('admin');
             }
         },
+        libAdminRole: {
+            authenticate: function(auth) {
+                return auth.isAuthorizedForRole('libAdmin');
+            }
+        },
         authenticated: {
             authenticate: function(auth) {
                 return auth.isAuthenticated();
@@ -46,17 +51,17 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/admin/books', {
             templateUrl: '/partials/admin/books-list',
             controller: 'BookListCtrl',
-            resolve: routeUserChecks.adminRole
+            resolve:routeUserChecks.libAdminRole
         })
         .when('/admin/add-new-book', {
             templateUrl: '/partials/admin/add-new-book',
             controller: 'AddNewBookCtrl',
-            resolve: routeUserChecks.adminRole
+            resolve: routeUserChecks.libAdminRole
         })
         .when('/admin/books/:id', {
             templateUrl: '/partials/admin/admin-book',
             controller: 'AdminBookCtrl',
-            resolve: routeUserChecks.adminRole
+            resolve: routeUserChecks.libAdminRole
         })
 });
 

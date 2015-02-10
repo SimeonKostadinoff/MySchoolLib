@@ -1,6 +1,6 @@
 app.factory('auth', function($http, $q, identity, UsersResource) {
     return {
-        signup: function(user) {
+        /*signup: function(user) {
             var deferred = $q.defer();
 
             var user = new UsersResource(user);
@@ -12,7 +12,7 @@ app.factory('auth', function($http, $q, identity, UsersResource) {
             });
 
             return deferred.promise;
-        },
+        },*/
         update: function(user) {
             var deferred = $q.defer();
 
