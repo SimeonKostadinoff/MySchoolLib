@@ -5,6 +5,9 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
             book.title='';
             book.author='';
             book.tags='';
+            book.publisher='';
+            book.summary='';
+            book.publishedDate='';
         })
     }
 })

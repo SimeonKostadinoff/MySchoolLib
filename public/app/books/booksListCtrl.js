@@ -1,4 +1,4 @@
-app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, $window, identity, UsersResource, currentBook) {
+app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook) {
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
 
@@ -21,9 +21,6 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         if(currentBook.isBookTaken(book)){
             return 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
         }
-
-
-
     }
 
     $scope.addRequestToBookAndUser = function(book) {

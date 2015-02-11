@@ -14,7 +14,19 @@
                 .form-group
                     label.col-md-2.control-label(for="tags") Tags
                     .col-md-10
-                        input.form-control(type="text", placeholder="Tags", ng-model="book.tags")
+                        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
+                .form-group
+                    label.col-md-2.control-label(for="tags") Издателство
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Издателство", ng-model="book.publisher" required)
+                .form-group
+                    label.col-md-2.control-label(for="tags") Година на издаване
+                    .col-md-10
+                        input.form-control(type="number", placeholder="Година на издаване", ng-model="book.publishedDate" required)
+                .form-group
+                    label.col-md-2.control-label(for="summary") Кратко резюме
+                    .col-md-10
+                        textarea.form-control(rows="3" ng-model="book.summary" placeholder="Кратко резюме" required)
                 .pull-right
                     button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookForm.$invalid") Добави
                     a.btn.btn-primary(href="#/users") Отказ

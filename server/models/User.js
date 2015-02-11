@@ -16,7 +16,8 @@ var userSchema = mongoose.Schema({
     takenBooks:[{
         bookID: String,
         bookTitle: String,
-        bookAuthor: String
+        bookAuthor: String,
+        dateToBeReturned: Date
     }]
 });
 

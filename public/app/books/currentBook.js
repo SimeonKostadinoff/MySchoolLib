@@ -33,7 +33,7 @@ app.factory('currentBook', function(identity){
         },
 
         isBookTakenByCurrentUser = function(book){
-            if(identity.isAuthenticated()) {
+            if(identity.isAuthenticated() && !!book.status.takenBy) {
                 if (book.status.takenBy.userID == identity.currentUser._id) {
                     return true;
                 }
@@ -47,6 +47,7 @@ app.factory('currentBook', function(identity){
 
         canBeRequested = function(book){
         if(!isBookRequestedByCurrentUser(book)
+            && !isBookTakenByCurrentUser(book)
             && identity.isAuthenticated()) return true;
         };
 

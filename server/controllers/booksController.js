@@ -117,13 +117,18 @@ module.exports = {
 
             Book.findByIdAndUpdate(
                 req.body._id,
-                {"status.requestedBy": [],
-                    "status.returned":false,
+                {"status.returned":false,
+                    $pull: {"status.requestedBy": {
+                        userID: newBookData.requestedBy.userID,
+                        userFirstName: newBookData.requestedBy.userFirstName,
+                        userLastName: newBookData.requestedBy.userLastName
+                    }},
                     "status.takenBy":{
                         userID: newBookData.status.takenBy.userID,
                         userFirstName: newBookData.status.takenBy.userFirstName,
                         userLastName: newBookData.status.takenBy.userLastName,
-                        takenDate: newBookData.status.takenBy.takenDate
+                        takenDate: newBookData.status.takenBy.takenDate,
+                        dateToBeReturned: newBookData.status.takenBy.dateToBeReturned
                     }},
                 {safe: true, upsert: true},
                 function(err, model) {
@@ -138,7 +143,8 @@ module.exports = {
                 {$push: {"takenBooks": {
                     bookID: newBookData._id,
                     bookTitle: newBookData.title,
-                    bookAuthor: newBookData.author
+                    bookAuthor: newBookData.author,
+                    dateToBeReturned: newBookData.status.takenBy.dateToBeReturned
                 }},
                     $pull: {"requestedBooks": {
                         bookID: newBookData._id,
@@ -159,8 +165,7 @@ module.exports = {
         if(newBookData.type == 'removeTakenByFromBook'){
             Book.findByIdAndUpdate(
                 req.body._id,
-                {
-                    $push: {"log": {
+                {$push: {"log": {
                         takenBy:{
                             userID: newBookData.status.takenBy.userID,
                             userFirstName: newBookData.status.takenBy.userFirstName,

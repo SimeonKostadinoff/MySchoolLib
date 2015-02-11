@@ -18,6 +18,8 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             var book = new BookResource(book);
             book.title=book.title.escapeHTML();
             book.author=book.author.escapeHTML();
+            book.summary=book.summary.escapeHTML();
+            book.publisher=book.publisher.escapeHTML();
             //TODO: book.tags need to be done correctly
             if(book.tags) book.tags=book.tags.escapeHTML();
 
@@ -66,11 +68,19 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
         addTakenToBookAndUser: function(book, user){
             var deferred = $q.defer();
             var updatedUserRequestToBook = new BookResource(book);
+            updatedUserRequestToBook.requestedBy= {
+                userID: user.userID,
+                userFirstName: user.userFirstName,
+                userLastName: user.userLastName
+            };
+            var dateToBeReturned = new Date();
+            dateToBeReturned.setDate(dateToBeReturned.getDate() + 5);
             updatedUserRequestToBook.status.takenBy= {
                 userID: user.userID,
                 userFirstName: user.userFirstName,
                 userLastName: user.userLastName,
-                takenDate: new Date()
+                takenDate: new Date(),
+                dateToBeReturned: dateToBeReturned
             };
             updatedUserRequestToBook.type='addTakenByToBookAndUser';
             updatedUserRequestToBook.$update().then(function() {

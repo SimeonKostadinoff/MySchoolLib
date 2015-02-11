@@ -24,11 +24,15 @@ var booksSchema = mongoose.Schema({
             userID: String,
             userFirstName: String,
             userLastName: String,
-            takenDate: Date
+            takenDate: Date,
+            dateToBeReturned: Date
         } ,
         returned: Boolean,
         returnDate: Date
-    }
+    },
+    summary:String,
+    publisher: String,
+    publishedDate: Number
 });
 
 var Book = mongoose.model('Book', booksSchema);

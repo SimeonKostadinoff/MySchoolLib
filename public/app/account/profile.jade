@@ -1,19 +1,21 @@
 .container
     .well
-        h2  Requested books
+        h2  Заявени книги
         table.table.table-hover
             tr
-                th Title
-                th Author
+                th Заглавие
+                th Автор
             tr(ng-repeat="book in requestedBooks")
                 td {{ book.bookTitle }}
                 td {{ book.bookAuthor }}
     .well
-        h2  Taken books
+        h2  Взети книги
         table.table.table-hover
             tr
-                th Title
-                th Author
+                th Заглавие
+                th Автор
+                th Дата на връщане
             tr(ng-repeat="book in takenBooks")
                 td {{ book.bookTitle }}
                 td {{ book.bookAuthor }}
+                td {{ book.dateToBeReturned | date }}

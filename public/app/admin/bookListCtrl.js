@@ -1,4 +1,4 @@
-app.controller('BookListCtrl', function($scope, BookResource, bookFactory, currentBook,$window, notifier){
+app.controller('BookListCtrl', function($scope, BookResource, bookFactory, currentBook, notifier){
     $scope.books = BookResource.query();
 
     $scope.removeBook = function(book){
@@ -21,11 +21,14 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
             userData = JSON.parse(userData);
             bookFactory.addTakenToBookAndUser(book, userData).then(function () {
                 notifier.success("Book given to " + userData.userFirstName + "!");
+                var dateToBeReturned = new Date();
+                dateToBeReturned.setDate(dateToBeReturned.getDate() + 5);
                 book.status.takenBy = {
                     userID: userData.userID,
                     userFirstName: userData.userFirstName,
                     userLastName: userData.userLastName,
-                    takenDate: new Date()
+                    takenDate: new Date(),
+                    dateToBeReturned: dateToBeReturned
                 }
                 book.status.requestedBy = [];
             })
