@@ -8,9 +8,9 @@
 
     ul.nav.navbar-nav.navbar-right(ng-show="identity.isAuthenticated()")
         li(ng-show="identity.currentUser.isLibAdmin()")
-            a(href="#/admin/books") Книги+
+            a(href="#/libAdmin/books") Книги+
         li(ng-show="identity.currentUser.isLibAdmin()")
-            a(href="#/admin/add-new-book") Добавяне на нова книга
+            a(href="#/libAdmin/add-new-book") Добавяне на нова книга
         li.dropdown
             a.dropdown-toggle(href="", data-toggle="dropdown")
                 | {{ identity.currentUser.firstName + ' ' + identity.currentUser.lastName }}

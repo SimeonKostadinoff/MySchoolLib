@@ -1,4 +1,4 @@
-var usersController = require('../controllers/UsersController');
+var usersController = require('../controllers/usersController');
 var booksController = require('../controllers/booksController');
 
 module.exports = {

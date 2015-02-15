@@ -48,18 +48,18 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'UserListCtrl',
             resolve: routeUserChecks.adminRole
         })
-        .when('/admin/books', {
-            templateUrl: '/partials/admin/books-list',
+        .when('/libAdmin/books', {
+            templateUrl: '/partials/libAdmin/books-list',
             controller: 'BookListCtrl',
             resolve:routeUserChecks.libAdminRole
         })
-        .when('/admin/add-new-book', {
-            templateUrl: '/partials/admin/add-new-book',
+        .when('/libAdmin/add-new-book', {
+            templateUrl: '/partials/libAdmin/add-new-book',
             controller: 'AddNewBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
-        .when('/admin/books/:id', {
-            templateUrl: '/partials/admin/admin-book',
+        .when('/libAdmin/books/:id', {
+            templateUrl: '/partials/libAdmin/admin-book',
             controller: 'AdminBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })

@@ -17,7 +17,7 @@
             th
         tr(ng-repeat="book in books | filter: search | orderBy: sort")
             td
-                a(href="#/admin/books/{{ book._id }}") {{ book.title }}
+                a(href="#/libAdmin/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}
 
             td(ng-show="isBookAvailable(book)")
