@@ -1,19 +1,13 @@
 var mongoose = require('mongoose');
 
 var booksSchema = mongoose.Schema({
-    title: String,
+    title: { type: String, require: '{PATH} is required'},
     author: String,
     boughtDate: Date,
-    tags: [String],
-    log:[{
-        takenBy: {
-            userID: String,
-            userFirstName: String,
-            userLastName: String
-        },
-        takenDate: Date,
-        returnDate: Date
-    }],
+    ISBN: { type: String, require: '{PATH} is required', unique: true },
+    summary:String,
+    publisher: String,
+    publishedDate: Number,
     status: {
         requestedBy: [{
             userID: String,
@@ -30,9 +24,17 @@ var booksSchema = mongoose.Schema({
         returned: Boolean,
         returnDate: Date
     },
-    summary:String,
-    publisher: String,
-    publishedDate: Number
+    log:[{
+        takenBy: {
+            userID: String,
+            userFirstName: String,
+            userLastName: String
+        },
+        takenDate: Date,
+        returnDate: Date
+    }]
+
+
 });
 
 var Book = mongoose.model('Book', booksSchema);

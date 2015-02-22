@@ -2,6 +2,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
 
+
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
             book.canBeRequested = currentBook.canBeRequested(book);
@@ -25,8 +26,8 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
     $scope.addRequestToBookAndUser = function(book) {
         book.canBeRequested=false;
-        book.canRequestBeCanceled=true;
         bookFactory.addRequestToBookAndUser(book).then(function () {
+            book.canRequestBeCanceled=true;
             notifier.success(book.title + " requested!");
             book.status.requestedBy.push({
                 userID: identity.currentUser._id,
@@ -42,9 +43,9 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         });
     };
     $scope.removeRequestFromBookAndUser = function(book){
-        book.canBeRequested=true;
         book.canRequestBeCanceled=false;
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
+            book.canBeRequested=true;
             notifier.warning(book.title + " request canceled!");
 
             $.each(book.status.requestedBy, function(i){

@@ -1,0 +1,39 @@
+.container
+    .well
+        form.form-horizontal(name="addNewBookForm")
+            fieldset
+                legend Добавяне на нова книга
+                .form-group
+                    label.col-md-2.control-label(for="isbn") ISBN
+                    .col-md-10
+                        input.form-control(type="number", placeholder="Заглавие", ng-model="book.isbn", required)
+                .form-group
+                    label.col-md-2.control-label(for="title") Заглавие
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Заглавие", ng-model="book.title", required)
+                .form-group
+                    label.col-md-2.control-label(for="author") Автор
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Автор", ng-model="book.author", required)
+                //.form-group
+                //    label.col-md-2.control-label(for="tags") Tags
+                //    .col-md-10
+                //        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
+                .form-group
+                    label.col-md-2.control-label(for="tags") Издателство
+                    .col-md-10
+                        input.form-control(type="text", placeholder="Издателство", ng-model="book.publisher" required)
+                .form-group
+                    label.col-md-2.control-label(for="tags") Година на издаване
+                    .col-md-10
+                        input.form-control(type="number", placeholder="Година на издаване", ng-model="book.publishedDate" required)
+                .form-group
+                    label.col-md-2.control-label(for="summary") Кратко резюме
+                    .col-md-10
+                        textarea.form-control(rows="3" ng-model="book.summary" placeholder="Кратко резюме" required)
+
+                .pull-right
+                    button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookForm.$invalid") Добави
+                    a.btn.btn-primary(href="#") Отказ
+
+

@@ -1,0 +1,38 @@
+.container
+    .well
+        form.form-horizontal(name="searchByISBN")
+            fieldset
+                legend Търсене по ISBN
+                .form-group.col-md-7
+                        input.form-control(type="text", placeholder="ISBN", ng-model="book.ISBN" required)
+                    .pull-right
+                        button.btn.btn-primary(ng-click="getBookByISBN(book.ISBN)" ng-disabled="searchByISBN.$invalid") Търси
+
+
+    .well(ng-repeat="item in items")
+        form.form-horizontal(name="form{{ $index }}")
+            fieldset
+                legend Добавяне на нова книга
+                .container
+                    .col-md-9
+                        .form-group
+                            label.col-md-7.control-label(for="title") Заглавие
+                                input.form-control(type="text",  placeholder="Заглавие", ng-model="book[$index].title", required)
+                        .form-group
+                            label.col-md-7.control-label(for="author") Автор
+                                input.form-control(type="text", placeholder="Автор", ng-model="book[$index].author", required)
+                        .form-group
+                            label.col-md-7.control-label(for="tags") Издателство
+                                input.form-control(type="text", placeholder="Издателство", ng-model="book[$index].publisher")
+                        .form-group
+                            label.col-md-7.control-label(for="tags") Година на издаване
+                                input.form-control(type="number", placeholder="Година на издаване", ng-model="book[$index].publishedDate")
+                        .form-group
+                            label.col-md-7.control-label(for="summary") Кратко резюме
+                                textarea.form-control(rows="3", placeholder="Кратко резюме", ng-model="book[$index].summary", required)
+                    .col-md-3
+                        img(ng-src="{{ book[$index].cover }}")
+                .pull-right
+                    button.btn.btn-primary(ng-click="addNewBook(book[$index])", ng-disabled="form{{ $index }}.$invalid") Добави
+                    a.btn.btn-primary(href="#") Отказ
+

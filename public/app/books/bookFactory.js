@@ -17,7 +17,7 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             var book = new BookResource(book);
             book.title=book.title.escapeHTML();
-            book.author=book.author.escapeHTML();
+            book.author=book.author.toString().escapeHTML();
             book.summary=book.summary.escapeHTML();
             book.publisher=book.publisher.escapeHTML();
             //TODO: book.tags need to be done correctly
@@ -105,6 +105,7 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             return deferred.promise;
         }
+
 
         /*,
 //TODO!!

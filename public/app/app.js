@@ -1,7 +1,6 @@
 var app = angular.module('app', ['ngResource', 'ngRoute']).value('toastr', toastr);
 
-app.config(function($routeProvider, $locationProvider) {
-    // $locationProvider.html5Mode(true);
+app.config(function($routeProvider) {
 
     var routeUserChecks = {
         adminRole: {
@@ -55,12 +54,21 @@ app.config(function($routeProvider, $locationProvider) {
         })
         .when('/libAdmin/add-new-book', {
             templateUrl: '/partials/libAdmin/add-new-book',
-            controller: 'AddNewBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
         .when('/libAdmin/books/:id', {
             templateUrl: '/partials/libAdmin/admin-book',
             controller: 'AdminBookCtrl',
+            resolve: routeUserChecks.libAdminRole
+        })
+        .when('/libAdmin/add-book-manual', {
+            templateUrl: '/partials/libAdmin/add-book-manual',
+            controller: 'AddNewBookCtrl',
+            resolve: routeUserChecks.libAdminRole
+        })
+        .when('/libAdmin/add-book-by-isbn', {
+            templateUrl: '/partials/libAdmin/add-book-by-isbn',
+            controller: 'AddNewBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
 });

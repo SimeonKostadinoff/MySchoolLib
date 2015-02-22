@@ -56,17 +56,5 @@ module.exports = {
             res.send(user);
         })
     }
-    /*addRequestedBooksToUser: function(req, res, next) {
-        if (req.user._id == req.body._id || req.user.roles.indexOf('admin') > -1) {
-            var updatedUserData = req.body;
-
-            User.update({_id: req.body._id}, updatedUserData, function() {
-                res.end();
-            })
-        }
-        else {
-            res.send({reason: 'You do not have permissions!'})
-        }
-    }*/
 
 }
