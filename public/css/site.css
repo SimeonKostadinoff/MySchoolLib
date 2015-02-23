@@ -1,3 +1,6 @@
+body {
+  padding-top: 80px;
+}
 header {
   border-bottom: 1px solid;
 }
@@ -59,7 +62,7 @@ td > .well-special {
 }
 /* Home page styling */
 .background-image {
-  margin-top: 45px;
+  margin-top: -35px;
   height: 300px;
   background: url("../images/background-image.jpg") no-repeat center center;
   background-size: cover;
@@ -92,15 +95,13 @@ h1 {
 }
 .carousel-background {
   display: block;
-  height: 200px;
+  height: 300px;
   width: 100%;
 }
 .carousel-control {
-  opacity: 0;
-  width: 10%;
-}
-.carousel-control:hover {
-  opacity: 0;
+  height: 50px;
+  width: 50px;
+  background: transparent;
 }
 .carousel-caption {
   left: 10%;
@@ -108,7 +109,8 @@ h1 {
 }
 .book-title {
   display: inline-block;
-  width: 20%;
+  width: 30%;
+  margin-right: 10px;
 }
 .book-title:last-of-type {
   margin-right: 0;
@@ -116,11 +118,26 @@ h1 {
 .book-title > a {
   color: #007196;
 }
+.carousel-indicators {
+  bottom: 0px;
+}
 .carousel-indicators > li {
   border: 1px solid #007196;
 }
 .carousel-indicators > li.active {
+  margin: 1px;
   width: 10px;
   height: 10px;
   background: #007196;
+}
+.left-arrow {
+  top: 120px;
+  left: 20px;
+  cursor: pointer;
+}
+.right-arrow {
+  top: 120px;
+  right: 20px;
+  left: auto;
+  cursor: pointer;
 }

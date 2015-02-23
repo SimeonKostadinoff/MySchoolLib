@@ -1,12 +1,12 @@
 p.newest
     | Най-новите книги:
 
-div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
+div(class="carousel-example-generic" class="carousel slide" data-ride="carousel")
 
     ol(class="carousel-indicators")
-        li(data-target="#carousel-example-generic" data-slide-to="0" class="active")
-        li(data-target="#carousel-example-generic" data-slide-to="1")
-        li(data-target="#carousel-example-generic" data-slide-to="2")
+        li(data-target=".carousel-example-generic" data-slide-to="0" class="active")
+        li(data-target=".carousel-example-generic" data-slide-to="1")
+        li(data-target=".carousel-example-generic" data-slide-to="2")
 
 
     div(class="carousel-inner")
@@ -31,14 +31,9 @@ div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
 
 
 
-    a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
-        span(class="glyphicon glyphicon-chevron-left")
 
-    a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
-        span(class="glyphicon glyphicon-chevron-right")
-div(ng-repeat="book in books | orderBy: '-boughtDate' | limitTo: 10")
-    .row
-        .col-md-12
-            | {{ book.boughtDate | date: 'MMM d yyyy' }}
-            a(href="#/books/{{ book._id }}") {{ book.title }}
-            | {{ book.author }}
+    img.arrows(src="images/left-arrow.png" class="left-arrow carousel-control" href=".carousel-example-generic" role="button" data-slide="prev")
+
+    img.arrows(src="images/right-arrow.png" class="right-arrow carousel-control" href=".carousel-example-generic" role="button" data-slide="next")
+
+
