@@ -1,8 +1,43 @@
+p.newest
+    | Най-новите книги:
+div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
+
+    ol(class="carousel-indicators")
+        li(data-target="#carousel-example-generic" data-slide-to="0" class="active")
+        li(data-target="#carousel-example-generic" data-slide-to="1")
+        li(data-target="#carousel-example-generic" data-slide-to="2")
+
+
+    div(class="carousel-inner")
+        div(class="item active")
+            div.carousel-background
+            div(class="carousel-caption")
+                div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>=0 && $index<=2" class="book-title")
+                    a(href="#/books/{{ book._id }}") {{ book.title }}
+
+
+        div(class="item")
+            div.carousel-background
+            div(class="carousel-caption")
+                div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>2 && $index<=5" class="book-title")
+                    a(href="#/books/{{ book._id }}") {{ book.title }}
+
+        div(class="item")
+            div.carousel-background
+            div(class="carousel-caption")
+                div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>5 && $index<=8" class="book-title")
+                    a(href="#/books/{{ book._id}}") {{ book.title }}
+
+
+
+    a(class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev")
+        span(class="glyphicon glyphicon-chevron-left")
+
+    a(class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next")
+        span(class="glyphicon glyphicon-chevron-right")
 div(ng-repeat="book in books | orderBy: '-boughtDate' | limitTo: 10")
     .row
-        .col-md-2
+        .col-md-12
             | {{ book.boughtDate | date: 'MMM d yyyy' }}
-        .col-md-5
             a(href="#/books/{{ book._id }}") {{ book.title }}
-        .col-md-5
             | {{ book.author }}
