@@ -3,19 +3,16 @@
         .col-md-2.vertical-center Търси
         .col-md-4
             input.form-control(type="text", placeholder="Търси", ng-model="search")
-        .col-md-2 Сортирай
-        .col-md-4
-            select.form-control(ng-model="sort")
-                option(value="title") Заглавие
-                option(value="author") Автор
     br
     table.table.table-striped.table-hover
         tr
-            th Заглавие
-            th Автор
+            th
+                a(href="" ng-click="predicate = 'title'; reverse=!reverse") Заглавие
+            th
+                a(href="" ng-click="predicate = 'author'; reverse=!reverse") Автор
             th
             th
-        tr(ng-repeat="book in books | filter: search | orderBy: sort")
+        tr(ng-repeat="book in books | filter: search | orderBy:predicate:reverse")
             td
                 a(href="#/libAdmin/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}

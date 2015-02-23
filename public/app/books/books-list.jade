@@ -1,28 +1,23 @@
 .container
     .row
         .col-md-2.vertical-center Търси
-        .col-md-4
-            input.form-control(type="text", placeholder="Търси", ng-model="search")
-        //.col-md-2 Сортирай
-        //.col-md-4
-        //    select.form-control(ng-model="sort")
-        //        option(value=" " ng-selected="'true'") По подразбиране
-        //        option(value="title") Заглавие
-        //        option(value="author") Автор
-        //        option(value="boughtDate") Дата на добавяне
+        .col-md-5
+            input.form-control(type="text", placeholder="Заглавие", ng-model="search.title")
+        .col-md-5
+            input.form-control(type="text", placeholder="Автор", ng-model="search.author")
     br
     table.table.table-striped.table-hover
         tr
             th
-                a(href="" ng-click="sort = 'title'") Заглавие
+                a(href="" ng-click="predicate = 'title'; reverse=!reverse") Заглавие
             th
-                a(href="" ng-click="sort = 'author'") Автор
+                a(href="" ng-click="predicate = 'author'; reverse=!reverse") Автор
             th
-                a(href="" ng-click="sort = 'boughtDate'") Дата
+                a(href="" ng-click="predicate = 'boughtDate'; reverse=!reverse") Дата
+            th  Статус
             th
-                a(href="" ng-click="sort = 'currentStatus'") Статус
-            th
-        tr(ng-repeat="book in books | filter: search | orderBy: sort")
+            .container(ng-if="search")
+        tr(ng-repeat="book in books | filter: search:strict | orderBy:predicate:reverse")
             td
                 a(href="#/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}

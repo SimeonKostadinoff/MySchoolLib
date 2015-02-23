@@ -1,6 +1,8 @@
 app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook) {
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
+    $scope.predicate = '-boughtDate';
+    $scope.reverse=false;
 
 
     cachedBooks.query().$promise.then(function (collection) {

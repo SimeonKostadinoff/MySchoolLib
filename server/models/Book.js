@@ -8,6 +8,7 @@ var booksSchema = mongoose.Schema({
     summary:String,
     publisher: String,
     publishedDate: Number,
+    cover: String,
     status: {
         requestedBy: [{
             userID: String,

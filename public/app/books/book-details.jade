@@ -9,3 +9,10 @@
         //TODO: summary needs to be formated
     div Кратко резюме: {{ book.summary }}
 
+    img(ng-src="{{ book.cover }}")
+
+    .container(ng-show="identity.isAuthenticated()")
+        button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
+        button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
+
+

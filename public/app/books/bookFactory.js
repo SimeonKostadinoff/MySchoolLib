@@ -16,10 +16,10 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             var deferred = $q.defer();
 
             var book = new BookResource(book);
-            book.title=book.title.escapeHTML();
-            book.author=book.author.toString().escapeHTML();
-            book.summary=book.summary.escapeHTML();
-            book.publisher=book.publisher.escapeHTML();
+            if(book.title) book.title=book.title.escapeHTML();
+            if(book.auth) book.author=book.author.toString().escapeHTML();
+            if(book.summary) book.summary=book.summary.escapeHTML();
+            if(book.publisher) book.publisher=book.publisher.escapeHTML();
             //TODO: book.tags need to be done correctly
             if(book.tags) book.tags=book.tags.escapeHTML();
 

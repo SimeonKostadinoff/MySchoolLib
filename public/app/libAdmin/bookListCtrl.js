@@ -1,5 +1,7 @@
 app.controller('BookListCtrl', function($scope, BookResource, bookFactory, currentBook, notifier){
     $scope.books = BookResource.query();
+    $scope.predicate = '-boughtDate';
+    $scope.reverse=false;
 
     $scope.removeBook = function(book){
        /* bookFactory.removeBook(book).then(function(){

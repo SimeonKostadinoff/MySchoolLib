@@ -38,13 +38,14 @@ module.exports = {
             res.send(book);
         });
     },
-    removeBook: function(req, res, next){
+    //TODO
+    /*removeBook: function(req, res, next){
         var bookData = req.body;
         Book.find({_id: bookData._id}).remove(function(model){
             console.log("Book removed " + model);
             res.end();
         })
-    },
+    },*/
 
     addOrRemoveRequestOrTakeBook: function(req,res,next){
         var newBookData = req.body;
@@ -80,7 +81,7 @@ module.exports = {
                 })
             }
 
-        // Request removing from the books
+        // Remove request from the books
         if(newBookData.type == 'removeUserRequestFromBook'){
             Book.findByIdAndUpdate(
                 req.body._id,
@@ -112,7 +113,7 @@ module.exports = {
                 })
         }
 
-
+        //Add takenBy to book and user
         if(newBookData.type == 'addTakenByToBookAndUser'){
 
             Book.findByIdAndUpdate(
@@ -161,7 +162,7 @@ module.exports = {
 
 
         }
-
+        // Remove takenBy from book and user
         if(newBookData.type == 'removeTakenByFromBook'){
             Book.findByIdAndUpdate(
                 req.body._id,

@@ -38,7 +38,7 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
                             publisher: val.volumeInfo.publisher,
                             publishedDate: parseInt(val.volumeInfo.publishedDate.substring(0, 4)),
                             summary: val.volumeInfo.description,
-                            cover: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTAiv3W8rpjZDScrTNPbgry0KO9oumVc_I3mkjamGfMEfI_gRRO-WZgpQ"
+                            cover: '../../images/no_book_cover_4.jpg'
                         });
                     }
 
@@ -52,7 +52,7 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
 
 
 
-    $scope.addNewBook = function(book, form){
+    $scope.addNewBook = function(book){
         bookFactory.addNewBook(book).then(function(){
             notifier.info(book.title + ' е добавена.');
             $scope.book=[];
