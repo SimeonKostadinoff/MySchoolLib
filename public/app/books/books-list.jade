@@ -1,23 +1,48 @@
 .container
     .row
-        .col-md-2.vertical-center Търси
+        .col-md-3
+        .col-md-6.buttons-position
+            p.search-title
+                | Търси:
+            input.form-control.main-search(type="text", placeholder="Заглавие, автор ...", ng-model="search")
+
+        .col-md-3
+
+    .row
+        .col-md-1
         .col-md-5
-            input.form-control(type="text", placeholder="Заглавие", ng-model="search.title")
+            input.form-control.advanced-search(type="text", placeholder="Заглавие", ng-model="search.title")
         .col-md-5
-            input.form-control(type="text", placeholder="Автор", ng-model="search.author")
+            input.form-control.advanced-search(type="text", placeholder="Автор", ng-model="search.author")
+        .col-md-1
+    .row
+        .col-md-5
+        .col-md-2.buttons-position
+            button.show-advanced-search(type="submit" value="button")
+                | Подробно търсене
+            button.hide-advanced-search(type="submit" value="button")
+                | Обобщено търсене
+        .col-md-5
+        //.col-md-2 Сортирай
+        //.col-md-4
+        //    select.form-control(ng-model="sort")
+        //        option(value=" " ng-selected="'true'") По подразбиране
+        //        option(value="title") Заглавие
+        //        option(value="author") Автор
+        //        option(value="boughtDate") Дата на добавяне
     br
     table.table.table-striped.table-hover
         tr
             th
-                a(href="" ng-click="predicate = 'title'; reverse=!reverse") Заглавие
+                a(href="" ng-click="sort = 'title'") Заглавие
             th
-                a(href="" ng-click="predicate = 'author'; reverse=!reverse") Автор
+                a(href="" ng-click="sort = 'author'") Автор
             th
-                a(href="" ng-click="predicate = 'boughtDate'; reverse=!reverse") Дата
-            th  Статус
+                a(href="" ng-click="sort = 'boughtDate'") Дата
             th
-            .container(ng-if="search")
-        tr(ng-repeat="book in books | filter: search:strict | orderBy:predicate:reverse")
+                a(href="" ng-click="sort = 'currentStatus'") Статус
+            th
+        tr(ng-repeat="book in books | filter: search | orderBy: sort")
             td
                 a(href="#/books/{{ book._id }}") {{ book.title }}
             td {{ book.author }}

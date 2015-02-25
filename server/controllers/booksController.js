@@ -1,6 +1,7 @@
 var Book = require('mongoose').model('Book'),
     User = require('mongoose').model('User');
 
+
 module.exports = {
     getAllBooks: function(req, res, next) {
         Book.find({}).exec(function(err, collection) {

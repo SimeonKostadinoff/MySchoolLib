@@ -141,3 +141,40 @@ h1 {
   left: auto;
   cursor: pointer;
 }
+.advanced-search {
+  display: none;
+  margin-bottom: 15px;
+}
+.main-search {
+  margin-bottom: 15px;
+}
+.search-title {
+  font-size: 24px;
+  font-weight: 100;
+  color: #007196;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.buttons-position {
+  text-align: center;
+}
+.show-advanced-search,
+.hide-advanced-search {
+  padding: 8px 12px;
+  background: #5bc0de;
+  border: 1px solid #46b8da;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #fff;
+  outline: 0;
+}
+.hide-advanced-search {
+  background: #e99002;
+  border: 1px solid #d08002;
+}
+.hide-advanced-search {
+  display: none;
+}
+table.table {
+  display: none;
+}

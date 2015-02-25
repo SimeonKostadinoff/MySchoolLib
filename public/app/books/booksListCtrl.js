@@ -4,6 +4,41 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.predicate = '-boughtDate';
     $scope.reverse=false;
 
+// Advanced book search
+    $(".show-advanced-search").click(function(){
+        $(".main-search").hide();
+        $(".advanced-search").show();
+        $(this).hide();
+        $(".hide-advanced-search").show();
+
+    });
+
+    $(".hide-advanced-search").click(function(){
+        $(".advanced-search").hide();
+        $(".main-search").show();
+        $(this).hide();
+        $(".show-advanced-search").show();
+    });
+
+    $(".main-search").keyup(function(){
+        if($(this).val()){
+            $("table.table").show();
+        }
+        else{
+            $("table.table").hide();
+        }
+    });
+    $(".advanced-search").keyup(function(){
+        if($(this).val()){
+            $("table.table").show();
+        }
+        else{
+            $("table.table").hide();
+        }
+    });
+
+    // end : advanced book search
+
 
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
