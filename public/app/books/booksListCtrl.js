@@ -4,7 +4,6 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.predicate = '-boughtDate';
     $scope.reverse=false;
 
-
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
             book.canBeRequested = currentBook.canBeRequested(book);
@@ -15,14 +14,14 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
 
         if(currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
-            var status= 'Requested by: ';
+            var status= 'заявена от: ';
             $.each(book.status.requestedBy, function(index, value){
                 status += value.userFirstName + ' ' + value.userLastName + ', ';
             });
             return status;
         }
         if(currentBook.isBookTaken(book)){
-            return 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
+            return 'в ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
         }
     }
 
@@ -30,7 +29,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         book.canBeRequested=false;
         bookFactory.addRequestToBookAndUser(book).then(function () {
             book.canRequestBeCanceled=true;
-            notifier.success(book.title + " requested!");
+            notifier.success("Книгата е заявена");
             book.status.requestedBy.push({
                 userID: identity.currentUser._id,
                 userFirstName: identity.currentUser.firstName,
@@ -48,7 +47,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         book.canRequestBeCanceled=false;
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
             book.canBeRequested=true;
-            notifier.warning(book.title + " request canceled!");
+            notifier.warning("Заявката е отказана");
 
             $.each(book.status.requestedBy, function(i){
                 if(book.status.requestedBy[i].userID === identity.currentUser._id) {
@@ -73,5 +72,6 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
     }
+
 
 });

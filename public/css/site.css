@@ -141,3 +141,7 @@ h1 {
   left: auto;
   cursor: pointer;
 }
+.slider-img {
+  width: 120px;
+  height: 170px;
+}

@@ -1,5 +1,5 @@
 .container
-    .row
+    .row.show-advanced-search
         .col-md-2.vertical-center Търси
         .col-md-5
             input.form-control(type="text", placeholder="Заглавие", ng-model="search.title")
@@ -23,7 +23,7 @@
             td {{ book.author }}
             td {{ book.boughtDate | date }}
             td
-              .well {{ currentStatus(book) }}
+                .well {{ currentStatus(book) }}
             td(ng-show="identity.isAuthenticated()")
                 button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
                 button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request

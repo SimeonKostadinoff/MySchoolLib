@@ -22,7 +22,7 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
         if(userData!=undefined) {
             userData = JSON.parse(userData);
             bookFactory.addTakenToBookAndUser(book, userData).then(function () {
-                notifier.success("Book given to " + userData.userFirstName + "!");
+                notifier.success("Книгата е дадена на: " + userData.userFirstName + "!");
                 var dateToBeReturned = new Date();
                 dateToBeReturned.setDate(dateToBeReturned.getDate() + 5);
                 book.status.takenBy = {
@@ -42,7 +42,7 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
 
     $scope.returnBook = function(book){
         bookFactory.returnBook(book).then(function(){
-            notifier.warning("Book returned!");
+            notifier.warning("Книгата е върната");
             book.status.takenBy=null;
             book.status.requestedBy=null;
         })

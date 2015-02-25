@@ -14,20 +14,26 @@ div(class="carousel-example-generic" class="carousel slide" data-ride="carousel"
             div.carousel-background
             div(class="carousel-caption")
                 div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>=0 && $index<=2" class="book-title")
-                    a(href="#/books/{{ book._id }}") {{ book.title }}
+                    a(href="#/books/{{ book._id }}")
+                        img.row.slider-img(ng-src="{{ book.cover }}")
+                        .row    {{ bookTitle(book) }}
 
 
         div(class="item")
             div.carousel-background
             div(class="carousel-caption")
                 div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>2 && $index<=5" class="book-title")
-                    a(href="#/books/{{ book._id }}") {{ book.title }}
+                    a(href="#/books/{{ book._id }}")
+                        img.row.slider-img(ng-src="{{ book.cover }}")
+                        .row    {{ bookTitle(book) }}
 
         div(class="item")
             div.carousel-background
             div(class="carousel-caption")
                 div(ng-repeat="book in books | orderBy: '-boughtDate'" ng-if="$index>5 && $index<=8" class="book-title")
-                    a(href="#/books/{{ book._id}}") {{ book.title }}
+                    a(href="#/books/{{ book._id}}")
+                        img.row.slider-img(ng-src="{{ book.cover }}")
+                        .row    {{ bookTitle(book) }}
 
 
 
