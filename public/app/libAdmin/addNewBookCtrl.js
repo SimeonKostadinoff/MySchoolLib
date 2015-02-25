@@ -1,5 +1,6 @@
 app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory){
     $scope.book = [];
+
     $scope.getBookByISBN = function(isbn){
         if($scope.book) {
             $scope.book = [];
@@ -15,7 +16,6 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
             if(data.totalItems==0) {
                 notifier.error("Не може да се намери тази книга");
             }
-
             $scope.searchByISBN.$setPristine();
             if(data.totalItems!=0) {
                 var items=[];
@@ -28,6 +28,7 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
                             publisher: val.volumeInfo.publisher,
                             publishedDate: parseInt(val.volumeInfo.publishedDate.substring(0, 4)),
                             summary: val.volumeInfo.description,
+                            isbn: val.volumeInfo.industryIdentifiers[0].identifier,
                             cover: val.volumeInfo.imageLinks.thumbnail
                         });
                     }
@@ -37,11 +38,11 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
                             author: val.volumeInfo.authors,
                             publisher: val.volumeInfo.publisher,
                             publishedDate: parseInt(val.volumeInfo.publishedDate.substring(0, 4)),
+                            isbn: val.volumeInfo.industryIdentifiers[0].identifier,
                             summary: val.volumeInfo.description,
                             cover: '../../images/no_book_cover_4.jpg'
                         });
                     }
-
 
                 });
                 $scope.items=items;
@@ -50,15 +51,15 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
         })
     }
 
-
-
     $scope.addNewBook = function(book){
         bookFactory.addNewBook(book).then(function(){
-            notifier.info(book.title + ' е добавена.');
+            notifier.info('Книгата е добавена.');
             $scope.book=[];
             if($scope.items){
                 $scope.items=[];
             }
         })
     }
+
+
 })

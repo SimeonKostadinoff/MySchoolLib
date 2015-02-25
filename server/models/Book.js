@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 var booksSchema = mongoose.Schema({
     title: { type: String, require: '{PATH} is required'},
     author: String,
+    genre: String,
     boughtDate: Date,
-    ISBN: { type: String, require: '{PATH} is required', unique: true },
+    isbn: { type: String, unique: true },
     summary:String,
     publisher: String,
     publishedDate: Number,
@@ -49,7 +50,7 @@ module.exports.seedInitialBooks = function() {
         }
         console.log("Books removed");
     });*/
-    Book.find({}).exec(function(err, collection) {
+    /*Book.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find books: ' + err);
             return;
@@ -71,5 +72,5 @@ module.exports.seedInitialBooks = function() {
 
             console.log("Books added");
         }
-    });
+    });*/
 };

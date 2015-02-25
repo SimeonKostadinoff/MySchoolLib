@@ -20,7 +20,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         book.canBeRequested=false;
         bookFactory.addRequestToBookAndUser(book).then(function () {
             book.canRequestBeCanceled=true;
-            notifier.success(book.title + " requested!");
+            notifier.success("Книгата е заявена");
             book.status.requestedBy.push({
                 userID: identity.currentUser._id,
                 userFirstName: identity.currentUser.firstName,
@@ -38,7 +38,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         book.canRequestBeCanceled=false;
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
             book.canBeRequested=true;
-            notifier.warning(book.title + " request canceled!");
+            notifier.warning("Заявката е отказана");
 
             $.each(book.status.requestedBy, function(i){
                 if(book.status.requestedBy[i].userID === identity.currentUser._id) {

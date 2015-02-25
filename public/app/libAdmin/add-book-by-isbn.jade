@@ -16,6 +16,9 @@
                 .container
                     .col-md-9
                         .form-group
+                            label.col-md-7.control-label(for="isbn") ISBN
+                                input.form-control(type="text", placeholder="ISBN", ng-model="book[$index].isbn", required)
+                        .form-group
                             label.col-md-7.control-label(for="title") Заглавие
                                 input.form-control(type="text",  placeholder="Заглавие", ng-model="book[$index].title", required)
                         .form-group

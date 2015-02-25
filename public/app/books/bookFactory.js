@@ -1,13 +1,15 @@
 app.factory('bookFactory', function($http, $q, BookResource, identity){
     var __entityMap = {
-        "&": "&amp;",
+       // "&": "&amp;",
         "<": "&lt;",
-        ">": "&gt;",
-        "/": '&#x2F;'
+        ">": "&gt;"
+       // '"': '&quot;',
+       // "'": '&#39;',
+      //  "/": '&#x2F;'
     };
 
     String.prototype.escapeHTML = function() {
-        return String(this).replace(/[&<>\/]/g, function (s) {
+        return String(this).replace(/[<>]/g, function (s) {
             return __entityMap[s];
         });
     }
@@ -17,12 +19,11 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             var book = new BookResource(book);
             if(book.title) book.title=book.title.escapeHTML();
-            if(book.auth) book.author=book.author.toString().escapeHTML();
+            if(book.author) book.author=book.author.toString().escapeHTML();
             if(book.summary) book.summary=book.summary.escapeHTML();
             if(book.publisher) book.publisher=book.publisher.escapeHTML();
             //TODO: book.tags need to be done correctly
             if(book.tags) book.tags=book.tags.escapeHTML();
-
             book.$save().then(function() {
                 deferred.resolve();
             }, function(response) {
