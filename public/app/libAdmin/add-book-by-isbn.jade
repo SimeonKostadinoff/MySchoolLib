@@ -3,6 +3,7 @@
         form.form-horizontal(name="searchByISBN")
             fieldset
                 legend Търсене по ISBN
+                    span    0072321113
                 .form-group.col-md-7
                         input.form-control(type="text", placeholder="ISBN", ng-model="book.ISBN" required)
                     .pull-right
@@ -34,7 +35,7 @@
                             label.col-md-7.control-label(for="summary") Кратко резюме
                                 textarea.form-control(rows="3", placeholder="Кратко резюме", ng-model="book[$index].summary", required)
                     .col-md-3
-                        img(ng-src="{{ book[$index].cover }}")
+                        img.input-img(ng-src="{{ book[$index].cover }}")
                 .pull-right
                     button.btn.btn-primary(ng-click="addNewBook(book[$index])", ng-disabled="form{{ $index }}.$invalid") Добави
                     a.btn.btn-primary(href="#") Отказ

@@ -52,6 +52,9 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
     }
 
     $scope.addNewBook = function(book){
+        if(!book.cover) {
+            book.cover = '../../images/no_book_cover_4.jpg';
+        }
         bookFactory.addNewBook(book).then(function(){
             notifier.info('Книгата е добавена.');
             $scope.book=[];
@@ -62,4 +65,21 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
     }
 
 
-})
+}).directive("fileread", function () {
+        return {
+            scope: {
+                fileread: "="
+            },
+            link: function (scope, element, attributes) {
+                element.bind("change", function (changeEvent) {
+                    var reader = new FileReader();
+                    reader.onload = function (loadEvent) {
+                        scope.$apply(function () {
+                            scope.fileread = loadEvent.target.result;
+                        });
+                    }
+                    reader.readAsDataURL(changeEvent.target.files[0]);
+                });
+            }
+        }
+    });
