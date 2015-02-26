@@ -3,36 +3,37 @@
         form.form-horizontal(name="addNewBookForm")
             fieldset
                 legend Добавяне на нова книга
-                .form-group
-                    label.col-md-2.control-label(for="isbn") ISBN
-                    .col-md-10
-                        input.form-control(type="text", placeholder="ISBN", ng-model="book.isbn", required)
-                .form-group
-                    label.col-md-2.control-label(for="title") Заглавие
-                    .col-md-10
-                        input.form-control(type="text", placeholder="Заглавие", ng-model="book.title", required)
-                .form-group
-                    label.col-md-2.control-label(for="author") Автор
-                    .col-md-10
-                        input.form-control(type="text", placeholder="Автор", ng-model="book.author", required)
-                //.form-group
-                //    label.col-md-2.control-label(for="tags") Tags
-                //    .col-md-10
-                //        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
-                .form-group
-                    label.col-md-2.control-label(for="tags") Издателство
-                    .col-md-10
-                        input.form-control(type="text", placeholder="Издателство", ng-model="book.publisher" required)
-                .form-group
-                    label.col-md-2.control-label(for="tags") Година на издаване
-                    .col-md-10
-                        input.form-control(type="number", placeholder="Година на издаване", ng-model="book.publishedDate" required)
-                .form-group
-                    label.col-md-2.control-label(for="summary") Кратко резюме
-                    .col-md-10
-                        textarea.form-control(rows="3" ng-model="book.summary" placeholder="Кратко резюме" required)
+                .container
+                    .col-md-9
+                        .form-group
+                            label.col-md-7.control-label(for="isbn") ISBN
+                                input.form-control(type="text", placeholder="ISBN", ng-model="book.isbn", required)
+                        .form-group
+                            label.col-md-7.control-label(for="title") Заглавие
+                                input.form-control(type="text", placeholder="Заглавие", ng-model="book.title", required)
+                        .form-group
+                            label.col-md-7.control-label(for="author") Автор
+                                input.form-control(type="text", placeholder="Автор", ng-model="book.author", required)
+                        //.form-group
+                        //    label.col-md-7.control-label(for="tags") Tags
+                        //        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
+                        .form-group
+                            label.col-md-7.control-label(for="tags") Издателство
+                                input.form-control(type="text", placeholder="Издателство", ng-model="book.publisher" required)
+                        .form-group
+                            label.col-md-7.control-label(for="tags") Година на издаване
+                                input.form-control(type="number", placeholder="Година на издаване", ng-model="book.publishedDate" required)
+                        .form-group
+                            label.col-md-7.control-label(for="summary") Кратко резюме
+                                textarea.form-control(rows="3" ng-model="book.summary" placeholder="Кратко резюме" required)
+                        .form-group
+                            label.col-md-7.control-label(for="cover") Корица
+                                input.form-control(type="file", placeholder="Корица",fileread="book.cover" ng-model="book.cover")
+                    .col-md-3
+                        img.input-img(ng-src="{{ book.cover }}")
 
                 .pull-right
+
                     button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookForm.$invalid") Добави
                     a.btn.btn-primary(href="#") Отказ
 
