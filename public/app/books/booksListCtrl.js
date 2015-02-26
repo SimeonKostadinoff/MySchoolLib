@@ -6,8 +6,9 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
 // Advanced book search
     $(".show-advanced-search").click(function(){
-        $(".main-search").hide();
+        $scope.search="";
         $(".main-search").val("");
+        $(".main-search").hide();
         $(".advanced-search").show();
         $(".advanced-search").val("");
         $(this).hide();
@@ -16,10 +17,11 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     });
 
     $(".hide-advanced-search").click(function(){
-        $(".advanced-search").hide();
-        $(".main-search").val("");
-        $(".main-search").show();
+        $scope.search="";
         $(".advanced-search").val("");
+        $(".advanced-search").hide();
+        $(".main-search").show();
+        $(".main-search").val("");
         $(this).hide();
         $(".show-advanced-search").show();
     });

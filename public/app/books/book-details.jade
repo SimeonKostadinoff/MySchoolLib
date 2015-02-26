@@ -10,7 +10,7 @@
             //TODO: summary needs to be formated
             div Кратко резюме: {{ book.summary }}
         .col-md-5
-            img(ng-src="{{ book.cover }}")
+            img.input-img(ng-src="{{ book.cover }}")
 
     .row(ng-show="identity.isAuthenticated()")
         .pull-right
