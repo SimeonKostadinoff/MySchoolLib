@@ -1,20 +1,53 @@
 
 .container
-    h2 {{ book.title }}
+    h2.book-heading {{ book.title }}
     .row
-        .col-md-5
-            div ISBN {{ book.isbn }}
-            div Издателство: {{ book.publisher }}
-            div Година на издаване: {{ book.publishedDate }}
-            div Статус: {{ status }}
+        .col-md-1
+        .col-md-3
+
+            div.info-decoration.right-text
+               span.extra-decoration
+                | Издателство:
+               b
+                | {{ book.publisher }}
+        .col-md-2
+
+            div.info-decoration.center-text
+                span.extra-decoration
+                 | Година:
+                b
+                    | {{ book.publishedDate }}
+        .col-md-2
+            div.info-decoration.center-text
+                span.extra-decoration
+                 | ISBN:
+                b
+                    | {{ book.isbn }}
+        .col-md-3
+            div.info-decoration.left-text
+                span.extra-decoration
+                 | Статус:
+                b
+                    | {{ status }}
+        .col-md-1
+
+    .row
+        .col-md-8
             //TODO: summary needs to be formated
-            div Кратко резюме: {{ book.summary }}
-        .col-md-5
+            button.show-summary
+                | Резюме
+            button.hide-summary
+                | Скрий резюме
+            div.summary
+                | {{ book.summary }}
+            div(ng-show="identity.isAuthenticated()")
+                button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
+                button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
+            img.centered-img(ng-src="{{ book.cover }}")
+        .col-md-4
             img.input-img(ng-src="{{ book.cover }}")
 
-    .row(ng-show="identity.isAuthenticated()")
-        .pull-right
-            button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
-            button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
+
+
 
 

@@ -1,5 +1,23 @@
 app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, currentBook, identity, bookFactory, notifier) {
     $scope.identity=identity;
+
+    // Summary
+    $(".show-summary").click(function(){
+        $(".centered-img").hide();
+        $(".input-img").slideDown();
+        $(".summary").slideDown();
+        $(this).hide();
+        $(".hide-summary").show();
+    });
+    $(".hide-summary").click(function(){
+        $(".summary").slideUp();
+        $(".input-img").slideUp();
+        $(".centered-img").show(200);
+        $(this).hide();
+        $(".show-summary").show();
+    });
+
+    // end Summary
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
             if (book._id === $routeParams.id) {
