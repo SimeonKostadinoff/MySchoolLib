@@ -27,20 +27,34 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     });
 
     $(".main-search").keyup(function(){
+        $(".hide-table").hide();
+        $(".show-table").show();
         if($(this).val()){
-            $("table").show();
+            $(".search-table").show();
         }
         else{
-            $("table").hide();
+            $(".search-table").hide();
         }
     });
     $(".advanced-search").keyup(function(){
+        $(".hide-table").hide();
+        $(".show-table").show();
         if($(this).val()){
-            $("table").show();
+            $(".search-table").show();
         }
         else{
-            $("table").hide();
+            $(".search-table").hide();
         }
+    });
+    $(".show-table").click(function(){
+        $(".search-table").show();
+        $(this).hide();
+        $(".hide-table").show();
+    });
+    $(".hide-table").click(function(){
+        $(".search-table").hide();
+        $(this).hide();
+        $(".show-table").show();
     });
 
     // end : advanced book search

@@ -23,6 +23,10 @@
             button.hide-advanced-search(type="submit" value="button")
                 | Обобщено търсене
         .col-md-5
+            button.show-table
+                | Покажи всички книги
+            button.hide-table
+                | Скрий всички книги
         //.col-md-2 Сортирай
         //.col-md-4
         //    select.form-control(ng-model="sort")
@@ -31,7 +35,7 @@
         //        option(value="author") Автор
         //        option(value="boughtDate") Дата на добавяне
     br
-    table.table.table-striped.table-hover
+    table.table.table-striped.table-hover.search-table
         tr
             th
                 a(href="" ng-click="sort = 'title'") Заглавие
