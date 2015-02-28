@@ -12,7 +12,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
     $(".hide-summary").click(function(){
         $(".summary").slideUp();
         $(".input-img").hide();
-        $(".centered-img").show(600);
+        $(".centered-img").slideDown(600);
         $(this).hide();
         $(".show-summary").show();
     });
