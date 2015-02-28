@@ -34,15 +34,17 @@
     .row
         .col-md-8
             //TODO: summary needs to be formated
-            button.show-summary
-                | Резюме
-            button.hide-summary
-                | Скрий резюме
-            div.summary
-                | {{ book.summary }}
-            div(ng-show="identity.isAuthenticated()")
-                button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
-                button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
+            .summary-request
+                .summary-buttons
+                    button.show-summary
+                        | Резюме
+                    button.hide-summary
+                        | Скрий резюме
+                .summary
+                    | {{ book.summary }}
+                div(ng-show="identity.isAuthenticated()")
+                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
+                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
             img.centered-img(ng-src="{{ book.cover }}")
         .col-md-4
             img.input-img(ng-src="{{ book.cover }}")

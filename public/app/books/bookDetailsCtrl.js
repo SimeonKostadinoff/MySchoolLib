@@ -4,15 +4,15 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
     // Summary
     $(".show-summary").click(function(){
         $(".centered-img").hide();
-        $(".input-img").slideDown();
+        $(".input-img").show();
         $(".summary").slideDown();
         $(this).hide();
         $(".hide-summary").show();
     });
     $(".hide-summary").click(function(){
         $(".summary").slideUp();
-        $(".input-img").slideUp();
-        $(".centered-img").show(200);
+        $(".input-img").hide();
+        $(".centered-img").show();
         $(this).hide();
         $(".show-summary").show();
     });
