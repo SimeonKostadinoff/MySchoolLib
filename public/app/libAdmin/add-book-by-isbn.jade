@@ -15,26 +15,38 @@
             fieldset
                 legend Добавяне на нова книга
                 .container
-                    .col-md-9
+                    .col-md-8
                         .form-group
-                            label.col-md-7.control-label(for="isbn") ISBN
+                            label.col-md-7.control-label(for="isbn")
+                                span
+                                    | ISBN
                                 input.form-control(type="text", placeholder="ISBN", ng-model="book[$index].isbn", required)
                         .form-group
-                            label.col-md-7.control-label(for="title") Заглавие
+                            label.col-md-7.control-label(for="title")
+                                span
+                                    | Заглавие
                                 input.form-control(type="text",  placeholder="Заглавие", ng-model="book[$index].title", required)
                         .form-group
-                            label.col-md-7.control-label(for="author") Автор
+                            label.col-md-7.control-label(for="author")
+                                span
+                                    | Автор
                                 input.form-control(type="text", placeholder="Автор", ng-model="book[$index].author", required)
                         .form-group
-                            label.col-md-7.control-label(for="tags") Издателство
+                            label.col-md-7.control-label(for="tags")
+                                span
+                                    | Издателство
                                 input.form-control(type="text", placeholder="Издателство", ng-model="book[$index].publisher")
                         .form-group
-                            label.col-md-7.control-label(for="tags") Година на издаване
+                            label.col-md-7.control-label(for="tags")
+                                span
+                                    | Година на издаване
                                 input.form-control(type="number", placeholder="Година на издаване", ng-model="book[$index].publishedDate")
                         .form-group
-                            label.col-md-7.control-label(for="summary") Кратко резюме
+                            label.col-md-7.control-label(for="summary")
+                                span
+                                    | Кратко резюме
                                 textarea.form-control(rows="3", placeholder="Кратко резюме", ng-model="book[$index].summary", required)
-                    .col-md-3
+                    .col-md-4
                         img.input-img(ng-src="{{ book[$index].cover }}")
                 .pull-right
                     button.btn.btn-primary(ng-click="addNewBook(book[$index])", ng-disabled="form{{ $index }}.$invalid") Добави

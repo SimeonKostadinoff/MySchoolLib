@@ -6,7 +6,9 @@
                 th Заглавие
                 th Автор
             tr(ng-repeat="book in requestedBooks")
-                td {{ book.bookTitle }}
+                td
+                    a(href="#/books/{{ book.bookID}}")
+                        | {{ book.bookTitle }}
                 td {{ book.bookAuthor }}
     .well
         h2  Взети книги
@@ -16,6 +18,8 @@
                 th Автор
                 th Дата на връщане
             tr(ng-repeat="book in takenBooks")
-                td {{ book.bookTitle }}
+                td
+                    a(href="#/books/{{ book.bookID}}")
+                        | {{ book.bookTitle }}
                 td {{ book.bookAuthor }}
                 td {{ book.dateToBeReturned | date }}
