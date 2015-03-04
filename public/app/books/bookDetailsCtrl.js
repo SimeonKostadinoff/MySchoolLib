@@ -10,14 +10,27 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(".hide-summary").show();
     });
     $(".hide-summary").click(function(){
-        $(".summary").slideUp();
+        $(".summary").fadeOut(200);
         $(".hidden-book").hide();
-        $(".centered-img").show(600);
+        $(".centered-img").fadeIn(1500);
         $(this).hide();
         $(".show-summary").show();
     });
 
     // end Summary
+    // Books information
+    $(".show-admin-book").click(function(){
+        $(".book-information").slideDown();
+        $(this).hide();
+        $(".hide-admin-book").show();
+    });
+    $(".hide-admin-book").click(function(){
+        $(".book-information ").slideUp();
+        $(this).hide();
+        $(".show-admin-book").show();
+    });
+
+    // end Books information
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
             if (book._id === $routeParams.id) {
