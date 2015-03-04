@@ -1,8 +1,8 @@
 .navbar-right(ng-controller="LoginCtrl")
     form.navbar-form(ng-hide="identity.isAuthenticated()")
         .form-group
-            input.form-control(type="text", placeholder="Username", ng-model="user.username")
-            input.form-control(type="password", placeholder="Password", ng-model="user.password")
+            input.form-control(type="text", placeholder="Потребителско име", ng-model="user.username")
+            input.form-control(type="password", placeholder="Парола", ng-model="user.password")
         button.btn.btn-primary.login-btn(ng-click="login(user)") Вход
 
 

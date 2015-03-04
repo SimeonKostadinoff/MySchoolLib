@@ -42,8 +42,8 @@
                 .summary
                     | {{ book.summary }}
                 div(ng-show="identity.isAuthenticated()")
-                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Request
-                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Cancel request
+                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
+                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
             img.centered-img(ng-src="{{ book.cover }}")
         .col-md-4
             img.hidden-book(ng-src="{{ book.cover }}")

@@ -103,17 +103,5 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
         }
 
 
-        /*,
-//TODO!!
-        removeBook: function(book){
-            var deferred = $q.defer();
-            book.$update().then(function() {
-                console.log("bookFactory inner");
-                deferred.resolve();
-            }, function(response) {
-                deferred.reject(response);
-            });
-            return deferred.promise;
-        }*/
     }
 })

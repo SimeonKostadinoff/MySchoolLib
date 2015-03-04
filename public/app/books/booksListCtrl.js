@@ -70,14 +70,14 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
 
         if(currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
-            var status= 'Requested by: ';
+            var status= 'Заявена от: ';
             $.each(book.status.requestedBy, function(index, value){
                 status += value.userFirstName + ' ' + value.userLastName + ', ';
             });
             return status;
         }
         if(currentBook.isBookTaken(book)){
-            return 'Taken by: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
+            return 'Взета от: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
         }
     }
 
@@ -85,7 +85,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         book.canBeRequested=false;
         bookFactory.addRequestToBookAndUser(book).then(function () {
             book.canRequestBeCanceled=true;
-            notifier.success(book.title + " requested!");
+            notifier.success(book.title + " е заявена!");
             book.status.requestedBy.push({
                 userID: identity.currentUser._id,
                 userFirstName: identity.currentUser.firstName,
@@ -103,7 +103,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         book.canRequestBeCanceled=false;
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
             book.canBeRequested=true;
-            notifier.warning(book.title + " request canceled!");
+            notifier.warning(book.title + " е отказана!");
 
             $.each(book.status.requestedBy, function(i){
                 if(book.status.requestedBy[i].userID === identity.currentUser._id) {
