@@ -33,10 +33,6 @@ app.config(function($routeProvider) {
             templateUrl: '/partials/books/book-details',
             controller: 'BookDetailsCtrl'
         })
-        /*.when('/signup', {
-            templateUrl: '/partials/account/signup',
-            controller: 'SignUpCtrl'
-        })*/
         .when('/profile', {
             templateUrl: '/partials/account/profile',
             controller: 'ProfileCtrl',

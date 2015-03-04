@@ -4,9 +4,7 @@ app.controller('BookListCtrl', function($scope, BookResource, bookFactory, curre
     $scope.reverse=false;
 
     $scope.removeBook = function(book){
-       /* bookFactory.removeBook(book).then(function(){
-            console.log("Book removed UserListCtrl here.");
-        })*/
+
     }
     $scope.isBookAvailable= function(book){
         return !currentBook.isBookRequested(book) && !currentBook.isBookTaken(book);

@@ -39,14 +39,6 @@ module.exports = {
             res.send(book);
         });
     },
-    //TODO
-    /*removeBook: function(req, res, next){
-        var bookData = req.body;
-        Book.find({_id: bookData._id}).remove(function(model){
-            console.log("Book removed " + model);
-            res.end();
-        })
-    },*/
 
     addOrRemoveRequestOrTakeBook: function(req,res,next){
         var newBookData = req.body;

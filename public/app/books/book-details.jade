@@ -33,7 +33,6 @@
 
     .row
         .col-md-8
-            //TODO: summary needs to be formated
             .summary-request
                 .summary-buttons
                     button.show-summary
@@ -48,6 +47,10 @@
             img.centered-img(ng-src="{{ book.cover }}")
         .col-md-4
             img.hidden-book(ng-src="{{ book.cover }}")
+
+
+    .row
+        .container(ng-show="identity.currentUser.isLibAdmin()" ng-include="'/partials/libAdmin/admin-book'")
 
 
 

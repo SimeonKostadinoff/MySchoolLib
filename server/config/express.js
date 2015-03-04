@@ -9,15 +9,12 @@ var express = require('express'),
     favicon = require('serve-favicon');
 
 module.exports = function(app, config) {
-    app.use(favicon(__dirname + '../../../public/images/favicons.png'));
+    app.use(favicon(__dirname + '../../../public/images/logo.png'));
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
     app.use(cookieParser());
-
     app.use(bodyParser.json({limit: '5mb'}));
-
     app.use(bodyParser.urlencoded({limit: '5mb', extended: true}));
-
 
     var connection = mongoose.createConnection(config.db);
 
@@ -25,7 +22,7 @@ module.exports = function(app, config) {
         secret:'the biggest secret ever',
         resave: false, // don't save session if unmodified
         saveUninitialized: false, // don't create session until something stored
-        maxAge: new Date(Date.now() + 3600000),
+        maxAge: new Date(Date.now() + 3600000), // how long the sesion will be stored
         store: new MongoStore({ mongooseConnection: connection })
     }));
 

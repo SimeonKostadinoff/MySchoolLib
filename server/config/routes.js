@@ -3,17 +3,11 @@ var auth = require('./auth'),
 
 module.exports = function(app) {
     app.get('/api/users', auth.isInRole('admin'), controllers.users.getAllUsers);
-   // app.post('/api/users', controllers.users.createUser);
-   // app.put('/api/users', auth.isAuthenticated, controllers.users.updateUser);
-    //app.get('/api/users/:id',controllers.users.getUserById);
 
     app.post('/api/books',auth.isInRole('libAdmin'), controllers.books.addNewBook);
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
     app.put('/api/books', auth.isAuthenticated, controllers.books.addOrRemoveRequestOrTakeBook);
-
-    //app.post('/api/admin/books', auth.isInRole('admin'), controllers.books.removeBook);
-
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
         res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)

@@ -41,7 +41,7 @@ module.exports.seedInitialUsers = function() {
             }
             console.log("Users removed");
         });*/
-    /*User.find({}).exec(function(err, collection) {
+    User.find({}).exec(function(err, collection) {
         if (err) {
             console.log('Cannot find users: ' + err);
             return;
@@ -62,5 +62,5 @@ module.exports.seedInitialUsers = function() {
             User.create({username: 'gosho', firstName: 'Gosho', lastName: 'Gosho', salt: salt, hashPass: hashedPwd,roles: ['libAdmin'], requestedBooks:[],takenBooks: []});
             console.log('Users added to database...');
         }
-    });*/
+    });
 };
