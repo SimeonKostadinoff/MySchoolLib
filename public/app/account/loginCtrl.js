@@ -14,7 +14,7 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
 
     $scope.logout = function() {
         auth.logout().then(function() {
-            notifier.success('Успешен вход!');
+            notifier.success('Успешен изход!');
             if ($scope.user) {
                 $scope.user.username = '';
                 $scope.user.password = '';

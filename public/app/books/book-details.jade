@@ -44,9 +44,9 @@
                 div(ng-show="identity.isAuthenticated()")
                     button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
                     button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
-                button.show-admin-book
+                button.show-admin-book(ng-show="identity.currentUser.isLibAdmin()")
                     | Информация
-                button.hide-admin-book
+                button.hide-admin-book(ng-show="identity.currentUser.isLibAdmin()")
                     | Скрий информация
             img.centered-img(ng-src="{{ book.cover }}")
         .col-md-4
