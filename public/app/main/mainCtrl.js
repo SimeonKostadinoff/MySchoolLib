@@ -10,4 +10,10 @@ app.controller('MainCtrl', function($scope, cachedBooks, identity) {
         }
         return changedBookTitle;
     }
+    $(document).ready(function()
+    {
+        $(".book-cover").error(function(){
+            $(this).attr('src', '../../images/no_book_cover_4.jpg');
+        });
+    });
 });

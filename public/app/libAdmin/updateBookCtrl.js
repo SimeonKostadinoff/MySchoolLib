@@ -16,4 +16,10 @@ app.controller('UpdateBookCtrl', function($scope, $location, notifier, bookFacto
             notifier.info('Книгата е обновена.');
         })
     }
+    $(document).ready(function()
+    {
+        $(".book-cover").error(function(){
+            $(this).attr('src', '../../images/no_book_cover_4.jpg');
+        });
+    });
 });

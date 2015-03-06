@@ -250,7 +250,7 @@ h1 {
 }
 .hidden-book {
   display: none;
-  margin: 40px 0 20px 0;
+  margin: 40px 0 75px 0;
   width: 240px;
   height: 320px;
   float: right;
@@ -268,6 +268,11 @@ h1 {
   margin-bottom: 20px;
   margin-top: 40px;
   float: right;
+}
+.update-book {
+  font-size: 12px;
+  line-height: 1.5;
+  margin-right: 20px;
 }
 /* Add book buttons */
 .add-book-buttons {
@@ -294,7 +299,6 @@ h1 {
   display: none;
 }
 .show-admin-book {
-  margin: 190px 0 20px 0;
   padding: 8px 12px;
   background: #007196;
   color: #fff;
@@ -304,7 +308,6 @@ h1 {
   outline: 0;
 }
 .hide-admin-book {
-  margin: 190px 0 20px 0;
   display: none;
   padding: 8px 12px;
   background: #fff;
@@ -316,4 +319,9 @@ h1 {
 }
 .admin-book-titles {
   color: #007196;
+}
+.update-and-info {
+  position: absolute;
+  top: 323px;
+  right: 15px;
 }

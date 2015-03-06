@@ -44,7 +44,7 @@
                                     | Корица
                                 input.form-control(type="file", placeholder="Корица",fileread="book.cover" ng-model="book.cover")
                     .col-md-4
-                        img.input-img(ng-src="{{ book.cover }}")
+                        img.input-img(ng-src="{{ book.cover }} " alt="Не е избрана корица")
 
                 .pull-right
 

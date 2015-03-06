@@ -44,13 +44,17 @@
                 div(ng-show="identity.isAuthenticated()")
                     button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
                     button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+
+            img.book-cover.centered-img(ng-src="{{ book.cover }}")
+        .col-md-4
+            img.book-cover.hidden-book(ng-src="{{ book.cover }}")
+            .update-and-info
+                a.btn.btn-primary.update-book(href="#/libAdmin/update-book/{{ book._id }}" ng-show="identity.currentUser.isLibAdmin()") Обнови книга
+
                 button.show-admin-book(ng-show="identity.currentUser.isLibAdmin()")
                     | Информация
                 button.hide-admin-book(ng-show="identity.currentUser.isLibAdmin()")
                     | Скрий информация
-            img.centered-img(ng-src="{{ book.cover }}")
-        .col-md-4
-            img.hidden-book(ng-src="{{ book.cover }}")
 
 
     .row
@@ -58,6 +62,6 @@
 
 
 
-    a.btn.btn-primary(href="#/libAdmin/update-book/{{ book._id }}" ng-show="identity.currentUser.isLibAdmin()") Обнови книга
+
 
 

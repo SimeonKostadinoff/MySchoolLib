@@ -8,6 +8,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(".summary").slideDown();
         $(this).hide();
         $(".hide-summary").show();
+        $(".update-and-info").animate({ top: '380px'});
     });
     $(".hide-summary").click(function(){
         $(".summary").fadeOut(200);
@@ -15,6 +16,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(".centered-img").fadeIn(1500);
         $(this).hide();
         $(".show-summary").show();
+        $(".update-and-info").animate({ top: '323px' });
     });
     // end Summary
     // Books information
@@ -28,6 +30,8 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(this).hide();
         $(".show-admin-book").show();
     });
+
+
     // end Books information
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
@@ -41,6 +45,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
                 else{
                     $scope.status= 'в наличност';
                 }
+
             }
         })
     })
@@ -91,6 +96,13 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
     }
+
+    $(document).ready(function()
+    {
+        $(".book-cover").error(function(){
+            $(this).attr('src', '../../images/no_book_cover_4.jpg');
+        });
+    });
 
 
 

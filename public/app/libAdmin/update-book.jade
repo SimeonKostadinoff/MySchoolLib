@@ -2,7 +2,7 @@
     .well
         form.form-horizontal(name="updateBookForm")
             fieldset
-                legend Добавяне на нова книга
+                legend Обновяване на книга
                 .container
                     .col-md-8
                         .form-group
@@ -44,11 +44,5 @@
                                     | Корица
                                 input.form-control(type="file", placeholder="Корица",fileread="book.cover" ng-model="book.cover")
                     .col-md-4
-                        img.input-img(ng-src="{{ book.cover }}")
-
-                .pull-right
-
-                    button.btn.btn-primary(ng-click="updateBook(book)", ng-disabled="updateBookForm.$invalid") Обнови
-                    a.btn.btn-primary(href="#") Отказ
-
+                        img.input-img.book-cover(ng-src="{{ book.cover }}")
 

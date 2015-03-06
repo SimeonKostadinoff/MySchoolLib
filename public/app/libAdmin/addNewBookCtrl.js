@@ -1,5 +1,6 @@
 app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory){
     $scope.book = [];
+    $scope.book.cover = '../../images/no_book_cover_4.jpg';
 
     $scope.getBookByISBN = function(isbn){
         if($scope.book) {
