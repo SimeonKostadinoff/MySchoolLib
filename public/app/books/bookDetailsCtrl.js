@@ -16,7 +16,6 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(this).hide();
         $(".show-summary").show();
     });
-
     // end Summary
     // Books information
     $(".show-admin-book").click(function(){
@@ -29,7 +28,6 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(this).hide();
         $(".show-admin-book").show();
     });
-
     // end Books information
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
@@ -86,7 +84,6 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
             });
         })
     }
-
 
     $scope.canBeRequested = function(book){
         return book.canBeRequested;

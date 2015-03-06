@@ -1,0 +1,54 @@
+.container
+    .well
+        form.form-horizontal(name="updateBookForm")
+            fieldset
+                legend Добавяне на нова книга
+                .container
+                    .col-md-8
+                        .form-group
+                            label.col-md-7.control-label(for="isbn")
+                                span
+                                    | ISBN
+                                input.form-control(type="text", placeholder="ISBN", ng-model="book.isbn", required)
+                        .form-group
+                            label.col-md-7.control-label(for="title")
+                                span
+                                    | Заглавие
+                                input.form-control(type="text", placeholder="Заглавие", ng-model="book.title", required)
+                        .form-group
+                            label.col-md-7.control-label(for="author")
+                                span
+                                    | Автор
+                                input.form-control(type="text", placeholder="Автор", ng-model="book.author", required)
+                        //.form-group
+                        //    label.col-md-7.control-label(for="tags") Tags
+                        //        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
+                        .form-group
+                            label.col-md-7.control-label(for="tags")
+                                span
+                                    | Издателство
+                                input.form-control(type="text", placeholder="Издателство", ng-model="book.publisher" required)
+                        .form-group
+                            label.col-md-7.control-label(for="tags")
+                                span
+                                    | Година на издаване
+                                input.form-control(type="number", placeholder="Година на издаване", ng-model="book.publishedDate" required)
+                        .form-group
+                            label.col-md-7.control-label(for="summary")
+                                span
+                                    | Кратко резюме
+                                textarea.form-control(rows="3" ng-model="book.summary" placeholder="Кратко резюме" required)
+                        .form-group
+                            label.col-md-7.control-label(for="cover")
+                                span
+                                    | Корица
+                                input.form-control(type="file", placeholder="Корица",fileread="book.cover" ng-model="book.cover")
+                    .col-md-4
+                        img.input-img(ng-src="{{ book.cover }}")
+
+                .pull-right
+
+                    button.btn.btn-primary(ng-click="updateBook(book)", ng-disabled="updateBookForm.$invalid") Обнови
+                    a.btn.btn-primary(href="#") Отказ
+
+

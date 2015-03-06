@@ -39,7 +39,6 @@ module.exports = {
             res.send(book);
         });
     },
-
     addOrRemoveRequestOrTakeBook: function(req,res,next){
         var newBookData = req.body;
         //Adding user request to book
@@ -73,7 +72,6 @@ module.exports = {
                     res.end();
                 })
             }
-
         // Remove request from the books
         if(newBookData.type == 'removeUserRequestFromBook'){
             Book.findByIdAndUpdate(
@@ -105,7 +103,6 @@ module.exports = {
                     res.end();
                 })
         }
-
         //Add takenBy to book and user
         if(newBookData.type == 'addTakenByToBookAndUser'){
 
@@ -194,11 +191,33 @@ module.exports = {
                     res.end();
                 })
         }
+        // Update book
+        if(newBookData.type == 'updateBook'){
+            if(req.user.roles.indexOf('libAdmin') > -1) {
+                Book.findByIdAndUpdate(
+                    req.body._id,
+                    {
+                        "title": newBookData.title,
+                        "author": newBookData.author,
+                        "isbn": newBookData.isbn,
+                        "summary": newBookData.summary,
+                        "publisher": newBookData.publisher,
+                        "publishedDate": newBookData.publishedDate,
+                        "cover": newBookData.cover
+                    },
+                    {safe: true, upsert: true},
+                    function (err, model) {
+                        if (err) {
+                            console.log("Can't find book and update it: " + err);
+                        }
+                        res.end();
+                    });
+            }
+            else{
+                console.log("You dont have permison to update books");
+            }
 
+        }
     }
-
-
-
-
 
 };

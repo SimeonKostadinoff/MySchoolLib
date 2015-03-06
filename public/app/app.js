@@ -67,6 +67,11 @@ app.config(function($routeProvider) {
             controller: 'AddNewBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
+        .when('/libAdmin/update-book/:id', {
+            templateUrl: '/partials/libAdmin/update-book',
+            controller: 'UpdateBookCtrl',
+            resolve: routeUserChecks.libAdminRole
+        })
 });
 
 app.run(function($rootScope, $location) {

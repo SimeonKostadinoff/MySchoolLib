@@ -12,7 +12,6 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
     return {
         addNewBook:function(book) {
             var deferred = $q.defer();
-
             var book = new BookResource(book);
             if(book.title) book.title=book.title.escapeHTML();
             if(book.author) book.author=book.author.toString().escapeHTML();
@@ -94,6 +93,23 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             takenBookToRemove.userID = takenBookToRemove.status.takenBy.userID;
             takenBookToRemove.type='removeTakenByFromBook';
             takenBookToRemove.$update().then(function() {
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
+        updateBook: function(book) {
+            var deferred = $q.defer();
+            var updatedBook = new BookResource(book);
+            if(updatedBook.title) book.title=book.title.escapeHTML();
+            if(updatedBook.author) book.author=book.author.toString().escapeHTML();
+            if(updatedBook.summary) book.summary=book.summary.escapeHTML();
+            if(updatedBook.publisher) book.publisher=book.publisher.escapeHTML();
+            if(updatedBook.tags) book.tags=book.tags.escapeHTML();
+            updatedBook.type='updateBook';
+            updatedBook.$update().then(function() {
                 deferred.resolve();
             }, function(response) {
                 deferred.reject(response);
