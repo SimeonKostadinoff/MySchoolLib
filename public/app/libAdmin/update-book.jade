@@ -46,3 +46,8 @@
                     .col-md-4
                         img.input-img.book-cover(ng-src="{{ book.cover }}")
 
+                .pull-right
+
+                    button.btn.btn-primary(ng-click="updateBook(book)", ng-disabled="updateBookForm.$invalid") Обнови
+                    a.btn.btn-primary(href="#") Отказ
+
