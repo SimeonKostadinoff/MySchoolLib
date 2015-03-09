@@ -5,7 +5,7 @@ var booksSchema = mongoose.Schema({
     author: String,
     genre: String,
     boughtDate: Date,
-    isbn: { type: String, unique: true },
+    isbn: { type: String },
     summary:String,
     publisher: String,
     publishedDate: Number,

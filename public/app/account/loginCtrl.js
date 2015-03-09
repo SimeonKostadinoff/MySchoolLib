@@ -7,7 +7,7 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
                 notifier.success('Успешен вход!');
             }
             else {
-                notifier.error('Username/Password комбинацията не е валидна!');
+                notifier.error('Комбинацията (потребиталско име/парола) не е валидна!');
             }
         });
     }

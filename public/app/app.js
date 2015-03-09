@@ -72,6 +72,10 @@ app.config(function($routeProvider) {
             controller: 'UpdateBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
+        .when('/test', {
+            templateUrl: '/partials/testDir/test',
+            controller: 'TestCtrl'
+        })
 });
 
 app.run(function($rootScope, $location) {

@@ -1,0 +1,7 @@
+.container
+    .row
+        textarea.textarea.input-users-textarea(ng-model="data" rows="10").users-input
+    .row
+        button.btn.btn-lg.test-btn.btn-primary Test
+
+    .well  {{ data | json : spacing }}

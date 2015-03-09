@@ -15,6 +15,7 @@ module.exports = function(app) {
 
     app.post('/login', auth.login);
     app.post('/logout', auth.logout);
+    app.post('/test', controllers.test.remakeThePass);
 
     app.get('/api/*', function(req, res) {
         res.status(404);
