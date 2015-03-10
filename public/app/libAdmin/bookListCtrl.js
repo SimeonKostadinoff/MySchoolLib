@@ -1,3 +1,4 @@
+
 app.controller('BookListCtrl', function($scope, BookResource, bookFactory, currentBook, notifier){
     $scope.books = BookResource.query();
     $scope.predicate = '-boughtDate';

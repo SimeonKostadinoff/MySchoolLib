@@ -275,10 +275,12 @@ h1 {
   margin-right: 20px;
 }
 /* Add book buttons */
+.format-buttons {
+  width: 100%;
+  text-align: center;
+}
 .add-book-buttons {
-  width: 225px;
-  margin-right: auto;
-  margin-left: auto;
+  display: inline block;
   margin-top: 20px;
   margin-bottom: 50px;
 }
