@@ -169,9 +169,6 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
 }
-.buttons-position {
-  text-align: center;
-}
 .show-advanced-search,
 .hide-advanced-search {
   padding: 8px 12px;
@@ -181,6 +178,7 @@ h1 {
   line-height: 1.5;
   color: #fff;
   outline: 0;
+  margin-right: 20px;
 }
 .hide-advanced-search {
   background: #e99002;
@@ -189,6 +187,41 @@ h1 {
 }
 .search-table {
   display: none;
+/* Book list styling */
+}
+.books-list-position {
+  float: left;
+  width: 50%;
+}
+.books-list-info-position {
+  width: 100%;
+}
+.books-list-title {
+  font-size: 24px;
+  font-weight: 300;
+  display: block;
+  margin-bottom: 10px;
+}
+.books-list-info-img {
+  float: left;
+  position: absolute;
+}
+.books-list-info {
+  color: #007196;
+  font-size: 13px;
+  float: left;
+  width: 100%;
+  padding-left: 140px;
+  padding-right: 30px;
+  margin-bottom: 50px;
+}
+.books-list-img {
+  width: 120px;
+  height: 170px;
+  margin-right: 20px;
+}
+.books-list-auth {
+  float: right;
 /* Book Details Styling */
 }
 .center-text {
