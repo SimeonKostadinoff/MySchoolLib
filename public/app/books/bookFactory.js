@@ -25,6 +25,7 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             });
             return deferred.promise;
         },
+        // Adding and removing requests from the books
         addRequestToBookAndUser: function(book) {
             var deferred = $q.defer();
             var updatedUserRequestToBook = new BookResource(book);
@@ -60,6 +61,8 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             return deferred.promise;
         },
+
+        // Giving and returning book from users
         addTakenToBookAndUser: function(book, user){
             var deferred = $q.defer();
             var updatedUserRequestToBook = new BookResource(book);
@@ -100,6 +103,8 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
 
             return deferred.promise;
         },
+
+        // Updating books from the libAdmin role
         updateBook: function(book) {
             var deferred = $q.defer();
             var updatedBook = new BookResource(book);
@@ -110,6 +115,44 @@ app.factory('bookFactory', function($http, $q, BookResource, identity){
             if(updatedBook.tags) book.tags=book.tags.escapeHTML();
             updatedBook.type='updateBook';
             updatedBook.$update().then(function() {
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+            });
+
+            return deferred.promise;
+        },
+
+        // Adding and removing likes from the books
+        addLikeToBook: function(book) {
+
+            var deferred = $q.defer();
+            var updatedUserLikeToBook = new BookResource(book);
+            updatedUserLikeToBook.likedBy= {
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            };
+            updatedUserLikeToBook.type='addUserLikeToBook';
+            updatedUserLikeToBook.$update().then(function() {
+                deferred.resolve();
+            }, function(response) {
+                deferred.reject(response);
+
+            });
+
+            return deferred.promise;
+        },
+        removeLikeFromBook: function(book) {
+            var deferred = $q.defer();
+            var updatedUserLikeToBook = new BookResource(book);
+            updatedUserLikeToBook.likedBy= {
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            };
+            updatedUserLikeToBook.type='removeUserLikeFromBook';
+            updatedUserLikeToBook.$update().then(function() {
                 deferred.resolve();
             }, function(response) {
                 deferred.reject(response);

@@ -41,7 +41,7 @@ module.exports = {
     },
     addOrRemoveRequestOrTakeBook: function(req,res,next){
         var newBookData = req.body;
-        //Adding user request to book
+        //Add user request to book
         if(newBookData.type == 'addUserRequestToBook'){
             Book.findByIdAndUpdate(
                 req.body._id,
@@ -72,7 +72,7 @@ module.exports = {
                     res.end();
                 })
             }
-        // Remove request from the books
+        // Remove request from the book
         if(newBookData.type == 'removeUserRequestFromBook'){
             Book.findByIdAndUpdate(
                 req.body._id,
@@ -103,6 +103,43 @@ module.exports = {
                     res.end();
                 })
         }
+
+        //Add user like to book
+        if(newBookData.type == 'addUserLikeToBook'){
+            Book.findByIdAndUpdate(
+                req.body._id,
+                {$push: {"likes": {
+                    userID: newBookData.likedBy.userID,
+                    userFirstName: newBookData.likedBy.userFirstName,
+                    userLastName: newBookData.likedBy.userLastName
+                }}},
+                {safe: true, upsert: true},
+                function(err, model) {
+                    if(err){
+                        console.log("Can't find book and add like: "+ err);
+                    }
+                    res.end();
+                });
+        }
+        // Remove like from the book
+        if(newBookData.type == 'removeUserLikeFromBook'){
+            Book.findByIdAndUpdate(
+                req.body._id,
+                {$pull: {"likes": {
+                    userID: newBookData.likedBy.userID,
+                    userFirstName: newBookData.likedBy.userFirstName,
+                    userLastName: newBookData.likedBy.userLastName
+                }}},
+                {safe: true, upsert: true},
+                function(err, model) {
+                    if(err){
+                        console.log("Can't find book and remove like: "+ err);
+                    }
+                    res.end();
+                });
+
+        }
+
         //Add takenBy to book and user
         if(newBookData.type == 'addTakenByToBookAndUser'){
 

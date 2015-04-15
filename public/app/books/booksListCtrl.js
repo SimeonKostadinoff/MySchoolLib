@@ -128,5 +128,11 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
     }
+    $(document).ready(function()
+    {
+        $(".book-cover").error(function(){
+            $(this).attr('src', '../../images/no_book_cover_4.jpg');
+        });
+    });
 
 });

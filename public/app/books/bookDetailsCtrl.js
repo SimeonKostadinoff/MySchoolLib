@@ -31,7 +31,6 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(".show-admin-book").show();
     });
 
-
     // end Books information
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
@@ -39,6 +38,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
                 $scope.book = book;
                 $scope.book.canBeRequested = currentBook.canBeRequested(book);
                 $scope.book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
+                $scope.book.likesCount= book.likes.length;
                 if(currentBook.isBookTaken(book)){
                     $scope.status= 'дата на връщане ' + book.status.takenBy.dateToBeReturned;
                 }
@@ -95,6 +95,25 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
     }
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
+    }
+
+    $scope.addLikeToBook = function(book) {
+        book.canBeLiked=false;
+        bookFactory.addLikeToBook(book).then(function () {
+            book.canLikeBeCanceled=true;
+            book.likesCount++;
+            notifier.success("Like");
+        });
+    };
+
+    $scope.removeLikeFromBook = function(book){
+        book.canRequestBeCanceled=false;
+        bookFactory.removeLikeFromBook(book).then(function(){
+            notifier.warning("Disliked!");
+            book.likesCount--;
+
+           ;
+        })
     }
 
     $(document).ready(function()

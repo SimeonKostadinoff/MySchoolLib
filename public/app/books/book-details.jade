@@ -55,6 +55,10 @@
                     | Информация
                 button.hide-admin-book(ng-show="identity.currentUser.isLibAdmin()")
                     | Скрий информация
+                button.btn.btn-info.btn-sm(ng-click="addLikeToBook(book)") Like! {{ book.likesCount }}
+                button.btn.btn-info.btn-sm(ng-click="removeLikeFromBook(book)") Dislike! {{ book.likesCount }}
+
+
 
 
     .row

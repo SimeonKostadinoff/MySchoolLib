@@ -34,8 +34,18 @@ var booksSchema = mongoose.Schema({
         },
         takenDate: Date,
         returnDate: Date
+    }],
+    likes:[{
+        userID: String,
+        userFirstName: String,
+        userLastName: String
+    }],
+    comments:[{
+        userID: String,
+        userFirstName: String,
+        userLastName: String,
+        comment: String
     }]
-
 
 });
 
