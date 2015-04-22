@@ -45,7 +45,7 @@
                     a.books-list-info-img(href="#/books/{{ book._id }}")
                         img.book-cover.books-list-img(ng-src="{{ book.cover }}")
                     .books-list-auth-surround(ng-show="show")
-                        .books-list-auth-position
+                        .books-list-auth-position(ng-show="identity.isAuthenticated()")
                             a.img-hover-effect(href="#/books/{{ book._id }}")
                             .books-list-auth(ng-show="identity.isAuthenticated()")
                                 div
