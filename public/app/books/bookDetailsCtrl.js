@@ -3,20 +3,14 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
 
     // Summary
     $(".show-summary").click(function(){
-        $(".centered-img").hide();
-        $(".hidden-book").show();
         $(".summary").slideDown();
         $(this).hide();
         $(".hide-summary").show();
-        $(".update-and-info").animate({ top: '380px'});
     });
     $(".hide-summary").click(function(){
-        $(".summary").fadeOut(200);
-        $(".hidden-book").hide();
-        $(".centered-img").fadeIn(1500);
+        $(".summary").slideUp();
         $(this).hide();
         $(".show-summary").show();
-        $(".update-and-info").animate({ top: '323px' });
     });
     // end Summary
     // Books information
@@ -30,15 +24,34 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         $(this).hide();
         $(".show-admin-book").show();
     });
-
     // end Books information
+
+    // Like and Request buttons
+
+    $(".number-requests").hover(function(){
+        $(".show-requests-when-hover").show();
+    }, function(){
+        $(".show-requests-when-hover").hide();
+    });
+
+    $(".number-likes").hover(function(){
+        $(".show-likes-when-hover").show();
+    }, function(){
+        $(".show-likes-when-hover").hide();
+    });
+
+    // end Like and Request buttons
+
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
             if (book._id === $routeParams.id) {
                 $scope.book = book;
                 $scope.book.canBeRequested = currentBook.canBeRequested(book);
                 $scope.book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
+                $scope.book.canBeLiked = currentBook.canBeLiked(book);
+                $scope.book.canLikeBeCanceled = currentBook.isBookLikedByCurrentUser(book);
                 $scope.book.likesCount= book.likes.length;
+                $scope.book.requestsCount = book.status.requestedBy.length;
                 if(currentBook.isBookTaken(book)){
                     $scope.status= 'дата на връщане ' + book.status.takenBy.dateToBeReturned;
                 }
@@ -49,11 +62,28 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
             }
         })
     })
-
+    $scope.currentStatus = function(book){
+        if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
+        var userStatus = [];
+        if(currentBook.isBookRequested(book)){
+            $.each(book.status.requestedBy, function(index, value){
+                userStatus.push(value.userFirstName + ' ' + value.userLastName);
+            });
+        }else if(!currentBook.isBookRequested(book)){
+            $.each(book.status.requestedBy, function(index, value){
+                userStatus.pop(value.userFirstName + ' ' + value.userLastName);
+            });
+        }
+        return userStatus;
+        if(currentBook.isBookTaken(book)){
+            return 'Взета от: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
+        }
+    }
     $scope.addRequestToBookAndUser = function(book) {
         book.canBeRequested=false;
         bookFactory.addRequestToBookAndUser(book).then(function () {
             book.canRequestBeCanceled=true;
+            book.requestsCount++;
             notifier.success("Книгата е заявена");
             book.status.requestedBy.push({
                 userID: identity.currentUser._id,
@@ -72,6 +102,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         book.canRequestBeCanceled=false;
         bookFactory.removeRequestFromBookAndUser(book).then(function(){
             book.canBeRequested=true;
+            book.requestsCount--;
             notifier.warning("Заявката е отказана");
 
             $.each(book.status.requestedBy, function(i){
@@ -89,8 +120,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
             });
         })
     }
-
-    $scope.canBeRequested = function(book){
+     $scope.canBeRequested = function(book){
         return book.canBeRequested;
     }
     $scope.canRequestBeCanceled = function(book){
@@ -102,20 +132,51 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
         bookFactory.addLikeToBook(book).then(function () {
             book.canLikeBeCanceled=true;
             book.likesCount++;
-            notifier.success("Like");
+            notifier.success(book.title + " е харесана");
+            book.likes.push({
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            });
         });
     };
 
     $scope.removeLikeFromBook = function(book){
-        book.canRequestBeCanceled=false;
+        book.canLikeBeCanceled=false;
         bookFactory.removeLikeFromBook(book).then(function(){
-            notifier.warning("Disliked!");
+            book.canBeLiked=true;
+            notifier.warning(book.title + " не е харесана");
             book.likesCount--;
+            $.each(book.likes, function(i){
+                if(book.likes[i].userID === identity.currentUser._id) {
+                    book.likes.splice(i,1);
+                    return false;
+                }
+            });
 
            ;
         })
     }
+    $scope.currentLikes = function(book){
+        var userLikes = [];
+        if(currentBook.isBookLiked(book)){
+             $.each(book.likes, function(index, value){
+                userLikes.push(value.userFirstName + ' ' + value.userLastName);
+            });
+        }else{
+            $.each(book.likes, function(index, value){
+                userLikes.pop(value.userFirstName + ' ' + value.userLastName);
+            });
+        }
+        return userLikes;
+    }
 
+    $scope.canBeLiked = function(book){
+        return book.canBeLiked;
+    }
+    $scope.canLikeBeCanceled = function(book){
+        return book.canLikeBeCanceled;
+    }
     $(document).ready(function()
     {
         $(".book-cover").error(function(){

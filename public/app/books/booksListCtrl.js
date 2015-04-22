@@ -25,57 +25,33 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         $(this).hide();
         $(".show-advanced-search").show();
     });
-
-    $(".main-search").keyup(function(){
-        $(".hide-table").hide();
-        $(".show-table").show();
-        if($(this).val()){
-            $(".search-table").show();
-        }
-        else{
-            $(".search-table").hide();
-        }
-    });
-    $(".advanced-search").keyup(function(){
-        $(".hide-table").hide();
-        $(".show-table").show();
-        if($(this).val()){
-            $(".search-table").show();
-        }
-        else{
-            $(".search-table").hide();
-        }
-    });
-    $(".show-table").click(function(){
-        $(".search-table").show();
-        $(this).hide();
-        $(".hide-table").show();
-    });
-    $(".hide-table").click(function(){
-        $(".search-table").hide();
-        $(this).hide();
-        $(".show-table").show();
-    });
-
-    // end : advanced book search
-
+        // end : advanced book search
+       // Hover books effects
 
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
             book.canBeRequested = currentBook.canBeRequested(book);
             book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
+            book.canBeLiked = currentBook.canBeLiked(book);
+            book.canLikeBeCanceled = currentBook.isBookLikedByCurrentUser(book);
+            if(book.title.length > 35) {
+                book.title=book.title.slice(0,35)+"...";
+            }
         });
     });
     $scope.currentStatus = function(book){
         if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
-
-        if(currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)){
-            var status= 'Заявена от: ';
+        var userStatus = [];
+        if(currentBook.isBookRequested(book)){
             $.each(book.status.requestedBy, function(index, value){
-                status += value.userFirstName + ' ' + value.userLastName + ', ';
+                userStatus.push(value.userFirstName + ' ' + value.userLastName);
             });
-            return status;
+        }else if(!currentBook.isBookRequested(book)){
+            $.each(book.status.requestedBy, function(index, value){
+                userStatus.pop(value.userFirstName + ' ' + value.userLastName);
+            });
         }
+        return userStatus;
         if(currentBook.isBookTaken(book)){
             return 'Взета от: ' + book.status.takenBy.userFirstName + ' ' + book.status.takenBy.userLastName;
         }
@@ -127,6 +103,57 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
     }
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
+    }
+
+    $scope.addLikeToBook = function(book) {
+        book.canBeLiked=false;
+        bookFactory.addLikeToBook(book).then(function () {
+            book.canLikeBeCanceled=true;
+            book.likesCount++;
+            notifier.success(book.title + " е харесана");
+            book.likes.push({
+                userID: identity.currentUser._id,
+                userFirstName: identity.currentUser.firstName,
+                userLastName: identity.currentUser.lastName
+            });
+        });
+    };
+
+    $scope.removeLikeFromBook = function(book){
+        book.canLikeBeCanceled=false;
+        bookFactory.removeLikeFromBook(book).then(function(){
+            book.canBeLiked=true;
+            notifier.warning(book.title + " не е харесана");
+            book.likesCount--;
+            $.each(book.likes, function(i){
+                if(book.likes[i].userID === identity.currentUser._id) {
+                    book.likes.splice(i,1);
+                    return false;
+                }
+            });
+
+            ;
+        })
+    }
+    $scope.currentLikes = function(book){
+        var userLikes = [];
+        if(currentBook.isBookLiked(book)){
+            $.each(book.likes, function(index, value){
+                userLikes.push(value.userFirstName + ' ' + value.userLastName);
+            });
+        }else{
+            $.each(book.likes, function(index, value){
+                userLikes.pop(value.userFirstName + ' ' + value.userLastName);
+            });
+        }
+        return userLikes;
+    }
+
+    $scope.canBeLiked = function(book){
+        return book.canBeLiked;
+    }
+    $scope.canLikeBeCanceled = function(book){
+        return book.canLikeBeCanceled;
     }
     $(document).ready(function()
     {

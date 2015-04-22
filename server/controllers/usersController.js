@@ -16,9 +16,7 @@ module.exports = {
             if (err) {
                 console.log('User could not be loaded: ' + err);
             }
-
             res.send(user);
         })
     }
-
 }

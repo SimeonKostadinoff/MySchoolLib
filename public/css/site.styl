@@ -158,92 +158,101 @@ h1
   background #e99002
   border 1px solid #d08002
   display none
-.search-table
-  display none
 
   /* Book list styling */
-.books-list-position
-  float left
-  width 50%
-.books-list-info-position
-  width 100%
-.books-list-title
-  font-size 24px
-  font-weight 300
-  display block
-  margin-bottom 10px
-
-.books-list-info-img
-  float left
-  position absolute
+.search-table
+  text-align center
 .books-list-info
-  color #007196
-  font-size 13px
-  float left
-  width 100%
-  padding-left 140px
-  padding-right 30px
-  margin-bottom 50px
-
+  display inline-block
+  text-align center
+  width 300px
+  margin 5px 5px 5px 5px
+  padding 30px 30px 30px 30px
+  border 1px solid transparent
+.books-list-info:hover
+  border 1px solid #99D1E3
+  background #F2F9FC
+  border-radius 5px
+.title-height
+  height 60px
+  margin-bottom 20px
+.books-list-title
+  font-size 21px
+  font-weight 300
 .books-list-img
-  width:120px
-  height 170px
-  margin-right 20px
+  width:150px
+  height 220px
+.books-list-auth-surround
+  position absolute
+  width 100%
+  top 0
+  left 0
+  text-align center
+.books-list-auth-position
+  width 150px
+  display inline-block
+  position relative
+  top 0
+  left 0
+.img-and-attributes-position
+  position relative
+.img-hover-effect
+  background #003F54
+  opacity 0.7
+  width:150px
+  height 220px
+  position absolute
+  top 0
+  left 0
 .books-list-auth
-  float right
-
-
+  position relative
+  z-index 1
+  top 80px
+  left 0
+.books-list-auth > div:last-of-type
+  margin-top 10px
 
   /* Book Details Styling */
-.center-text
-  text-align center
-.right-text
-  text-align right
-.left-text
-  text-align left
+
 .book-heading
   text-align center
   margin-bottom 30px
   color #007196
 .extra-decoration
   margin-right 5px
-.info-decoration
-  font-size 12px
-  color #007196
-.summary-request
+ul.book-info
+  padding 0
   float left
+  width 50%
+li.info-decoration
+  font-size 15px
+  color #007196
+  list-style none
+  margin-bottom 10px
+.summary-buttons
+  text-align left
+  list-style none
+  margin-top 20px
+.show-summary, .show-table
+  color #007196
+  font-size 15px
+  font-weight 700
+  text-decoration underline
+  cursor pointer
+.hide-summary, .hide-table
+  display none
+  color #007196
+  font-size 15px
+  font-weight 700
+  cursor pointer
 .summary
   display none
   color #007196
   margin-bottom 20px
-  float left
-.show-summary, .show-table
-  margin 40px 0 20px 0
-  padding 8px 12px
-  background #007196
-  color #ffffff
-  font-size 12px
-  line-height 1.5
-  border 1px solid #007196
-  outline 0
-.hide-summary, .hide-table
-  margin 40px 0 20px 0
-  display none
-  padding 8px 12px
-  background #ffffff
-  color #007196
-  line-height 1.5
-  font-size 12px
-  border 1px solid #007196
-  outline 0
+  margin-top 20px
+
 .show-table, .hide-table
   margin-top 0
-.hidden-book
-  display none
-  margin 40px 0 75px 0
-  width:240px
-  height 320px
-  float right
 .input-img
   margin 40px 0 20px 0
   width:240px
@@ -252,14 +261,61 @@ h1
 .centered-img
   width:240px
   height 320px
-  margin-right 60px
-  margin-bottom 20px
-  margin-top 40px
   float right
+  margin-right 50px
 .update-book
   font-size 12px
   line-height 1.5
   margin-right 20px
+.request-like-buttons
+  text-align right
+.request-buttons
+  margin-bottom 20px
+.like-buttons
+  display block
+.like-button
+  padding 8px 12px
+  color #ffffff
+  background #1F8F1F
+  line-height 1.5
+  font-size 12px
+  border 1px solid #1F8F1F
+.dislike-button
+  padding 8px 12px
+  color #ffffff
+  background #CC0000
+  line-height 1.5
+  font-size 12px
+  border 1px solid #CC0000
+.show-requests-when-hover, .show-likes-when-hover
+  display none
+  text-align left
+  background #595959
+  color #ffffff
+  font-size 11px
+  border-radius 2px
+  position absolute
+  z-index 1
+  right 70px
+.show-requests-when-hover
+  top 45px
+.show-likes-when-hover
+  top 100px
+.request-like-names
+  margin 3px 8px 0 8px
+.request-like-names:last-of-type
+  margin-bottom 5px
+.number-requests-likes
+  display inline-block
+  padding 5px 5px 5px 5px
+  background #CCCCCC
+  color #404040
+  font-size 12px
+  margin-right 10px
+  cursor pointer
+.update-and-info
+  float right
+  margin-top 200px
 
 /* Add book buttons */
 .format-buttons
@@ -303,7 +359,3 @@ h1
   outline 0
 .admin-book-titles
   color #007196
-.update-and-info
-  position absolute
-  top 323px
-  right 15px

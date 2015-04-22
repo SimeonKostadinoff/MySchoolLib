@@ -2,63 +2,71 @@
 .container
     h2.book-heading {{ book.title }}
     .row
-        .col-md-1
-        .col-md-3
-
-            div.info-decoration.right-text
-               span.extra-decoration
-                | Издателство:
-               b
-                | {{ book.publisher }}
-        .col-md-2
-
-            div.info-decoration.center-text
-                span.extra-decoration
-                 | Година:
-                b
-                    | {{ book.publishedDate }}
-        .col-md-2
-            div.info-decoration.center-text
-                span.extra-decoration
-                 | ISBN:
-                b
-                    | {{ book.isbn }}
-        .col-md-3
-            div.info-decoration.left-text
-                span.extra-decoration
-                 | Статус:
-                b
-                    | {{ status }}
-        .col-md-1
-
-    .row
         .col-md-8
-            .summary-request
-                .summary-buttons
-                    button.show-summary
+            ul.book-info
+                li.info-decoration
+                   span.extra-decoration
+                        | Издателство:
+                   b
+                        | {{ book.publisher }}
+
+                li.info-decoration
+                    span.extra-decoration
+                        | Автор:
+                    b
+                        | {{ book.author }}
+
+                li.info-decoration
+                    span.extra-decoration
+                        | Година:
+                    b
+                        | {{ book.publishedDate }}
+
+                li.info-decoration
+                    span.extra-decoration
+                        | ISBN:
+                    b
+                        | {{ book.isbn }}
+
+                li.info-decoration
+                    span.extra-decoration
+                        | Статус:
+                    b
+                        | {{ status }}
+                li.summary-buttons
+                    a.show-summary
                         | Резюме
-                    button.hide-summary
+                    a.hide-summary
                         | Скрий резюме
-                .summary
-                    | {{ book.summary }}
-                div(ng-show="identity.isAuthenticated()")
-                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
-                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                    .summary
+                        | {{ book.summary }}
 
             img.book-cover.centered-img(ng-src="{{ book.cover }}")
+
         .col-md-4
-            img.book-cover.hidden-book(ng-src="{{ book.cover }}")
-            .update-and-info
-                a.btn.btn-primary.update-book(href="#/libAdmin/update-book/{{ book._id }}" ng-show="identity.currentUser.isLibAdmin()") Обнови книга
 
-                button.show-admin-book(ng-show="identity.currentUser.isLibAdmin()")
-                    | Информация
-                button.hide-admin-book(ng-show="identity.currentUser.isLibAdmin()")
-                    | Скрий информация
-                button.btn.btn-info.btn-sm(ng-click="addLikeToBook(book)") Like! {{ book.likesCount }}
-                button.btn.btn-info.btn-sm(ng-click="removeLikeFromBook(book)") Dislike! {{ book.likesCount }}
+                div(ng-show="identity.isAuthenticated()")
+                    .request-like-buttons
+                        .request-buttons
+                            .number-requests-likes.number-requests {{ book.requestsCount }}
+                            button.btn.btn-info.btn-sm.request-button(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
+                            button.btn.btn-warning.btn-sm.unrequest-button(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                            div.show-requests-when-hover
+                                div.request-like-names(ng-repeat="(key, value) in currentStatus(book)") {{ value }}
+                        .like-buttons
+                            .number-requests-likes.number-likes {{ book.likesCount }}
+                            button.like-button(ng-show="canBeLiked(book)" ng-click="addLikeToBook(book)") Харесай
+                            button.dislike-button(ng-show="canLikeBeCanceled(book)"  ng-click="removeLikeFromBook(book)") Не ми харесва
+                            div.show-likes-when-hover
+                                div.request-like-names(ng-repeat="(key, value) in currentLikes(book)") {{ value }}
 
+                .update-and-info
+                    a.btn.btn-primary.update-book(href="#/libAdmin/update-book/{{ book._id }}" ng-show="identity.currentUser.isLibAdmin()") Обнови книга
 
+                    button.show-admin-book(ng-show="identity.currentUser.isLibAdmin()")
+                        | Информация
+                    button.hide-admin-book(ng-show="identity.currentUser.isLibAdmin()")
+                        | Скрий информация
 
 
     .row

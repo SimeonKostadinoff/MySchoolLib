@@ -24,12 +24,6 @@
                 | Подробно търсене
             button.hide-advanced-search(type="submit" value="button")
                 | Обобщено търсене
-
-            button.show-table
-                | Покажи всички книги
-            button.hide-table
-                | Скрий всички книги
-
     br
     .table.table-striped.table-hover.search-table
         // tr
@@ -42,25 +36,21 @@
             th
                 a(href="" ng-click="sort = 'currentStatus'") Статус
             th //
-        .books-list-position(ng-repeat="book in books | filter: search | orderBy: sort")
-            .books-list-info-position
-                a.books-list-info-img(href="#/books/{{ book._id }}")
-                    img.book-cover.books-list-img(ng-src="{{ book.cover }}")
-                .books-list-info
-                    a.books-list-title(href="#/books/{{ book._id }}")
+
+        .books-list-info(ng-repeat="book in books | filter: search | orderBy: sort" ng-mouseenter="show = true" ng-mouseleave="show = false")
+                .title-height
+                    a.books-list-title(href="#/books/{{ book._id }}" ng-show="show")
                         | {{ book.title }}
-                    div
-                        p
-                            | Автор:
-                            b {{ book.author }}
-                        p
-                            | Издателство:
-                            b {{ book.publisher }}
-                        p
-                            | ISBN:
-                            b {{ book.isbn }}
-                        div
-                            b {{ currentStatus(book) }}
+                .img-and-attributes-position
+                    a.books-list-info-img(href="#/books/{{ book._id }}")
+                        img.book-cover.books-list-img(ng-src="{{ book.cover }}")
+                    .books-list-auth-surround(ng-show="show")
+                        .books-list-auth-position
+                            a.img-hover-effect(href="#/books/{{ book._id }}")
                             .books-list-auth(ng-show="identity.isAuthenticated()")
-                                button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
-                                button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                                div
+                                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
+                                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                                div
+                                    button.like-button(ng-show="canBeLiked(book)" ng-click="addLikeToBook(book)") Харесай
+                                    button.dislike-button(ng-show="canLikeBeCanceled(book)"  ng-click="removeLikeFromBook(book)") Не ми харесва
