@@ -47,16 +47,23 @@
 
                 div(ng-show="identity.isAuthenticated()")
                     .request-like-buttons
-                        .request-buttons
+                        .request-buttons(ng-hide="currentBook.isBookTakenByCurrentUser(book)")
                             .number-requests-likes.number-requests {{ book.requestsCount }}
+
                             button.btn.btn-info.btn-sm.request-button(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
-                            button.btn.btn-warning.btn-sm.unrequest-button(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                            div.request-button-container(ng-show="canRequestBeCanceled(book)")
+                                button.btn.btn-warning.btn-sm.unrequest-button.remove-when-hover-2 Заявена
+                                button.btn.btn-warning.btn-sm.unrequest-button.show-when-hover-2(ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
                             div.show-requests-when-hover
                                 div.request-like-names(ng-repeat="(key, value) in currentStatus(book)") {{ value }}
+                        span.show-when-book-taken(ng-show="currentBook.isBookTakenByCurrentUser(book)") Книгата е взета от Вас!
                         .like-buttons
                             .number-requests-likes.number-likes {{ book.likesCount }}
+
                             button.like-button(ng-show="canBeLiked(book)" ng-click="addLikeToBook(book)") Харесай
-                            button.dislike-button(ng-show="canLikeBeCanceled(book)"  ng-click="removeLikeFromBook(book)") Не ми харесва
+                            div.like-button-container(ng-show="canLikeBeCanceled(book)")
+                                button.dislike-button.remove-when-hover Харесана
+                                button.dislike-button.show-when-hover(ng-click="removeLikeFromBook(book)") Не ми харесва
                             div.show-likes-when-hover
                                 div.request-like-names(ng-repeat="(key, value) in currentLikes(book)") {{ value }}
 

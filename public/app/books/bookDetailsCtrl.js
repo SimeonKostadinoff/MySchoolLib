@@ -1,5 +1,6 @@
 app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, currentBook, identity, bookFactory, notifier) {
     $scope.identity=identity;
+    $scope.currentBook=currentBook;
 
     // Summary
     $(".show-summary").click(function(){
@@ -41,6 +42,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
     });
 
     // end Like and Request buttons
+
 
     $scope.book = cachedBooks.query().$promise.then(function(collection) {
         collection.forEach(function(book) {
@@ -123,6 +125,7 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
      $scope.canBeRequested = function(book){
         return book.canBeRequested;
     }
+
     $scope.canRequestBeCanceled = function(book){
         return book.canRequestBeCanceled;
     }

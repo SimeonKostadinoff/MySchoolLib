@@ -24,6 +24,7 @@
                 | Подробно търсене
             button.hide-advanced-search(type="submit" value="button")
                 | Обобщено търсене
+
     br
     .table.table-striped.table-hover.search-table
         // tr
@@ -49,8 +50,12 @@
                             a.img-hover-effect(href="#/books/{{ book._id }}")
                             .books-list-auth(ng-show="identity.isAuthenticated()")
                                 div
-                                    button.btn.btn-info.btn-sm(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
-                                    button.btn.btn-warning.btn-sm(ng-show="canRequestBeCanceled(book)" ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
+                                    button.btn.btn-info.btn-sm.request-button(ng-show="canBeRequested(book)" ng-click="addRequestToBookAndUser(book)") Заяви
+                                    div.request-button-container(ng-show="canRequestBeCanceled(book)")
+                                        button.btn.btn-warning.btn-sm.unrequest-button.remove-when-hover-2 Заявена
+                                        button.btn.btn-warning.btn-sm.unrequest-button.show-when-hover-2(ng-click="removeRequestFromBookAndUser(book)" ) Отказ на заявка
                                 div
                                     button.like-button(ng-show="canBeLiked(book)" ng-click="addLikeToBook(book)") Харесай
-                                    button.dislike-button(ng-show="canLikeBeCanceled(book)"  ng-click="removeLikeFromBook(book)") Не ми харесва
+                                    div.like-button-container(ng-show="canLikeBeCanceled(book)")
+                                        button.dislike-button.remove-when-hover Харесана
+                                        button.dislike-button.show-when-hover(ng-click="removeLikeFromBook(book)") Не ми харесва

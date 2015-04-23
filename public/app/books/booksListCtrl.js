@@ -26,7 +26,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         $(".show-advanced-search").show();
     });
         // end : advanced book search
-       // Hover books effects
+
 
     cachedBooks.query().$promise.then(function (collection) {
         collection.forEach(function (book) {
@@ -37,6 +37,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
             if(book.title.length > 35) {
                 book.title=book.title.slice(0,35)+"...";
             }
+
         });
     });
     $scope.currentStatus = function(book){
@@ -160,6 +161,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         $(".book-cover").error(function(){
             $(this).attr('src', '../../images/no_book_cover_4.jpg');
         });
+
     });
 
 });
