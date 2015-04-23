@@ -6,6 +6,9 @@ app.controller('UpdateBookCtrl', function($scope, $location, notifier, bookFacto
                 $scope.book = book;
             }
         })
+        if($scope.book._id != $routeParams.id){
+            $location.path('/404');
+        }
     })
 
     $scope.updateBook = function(book) {

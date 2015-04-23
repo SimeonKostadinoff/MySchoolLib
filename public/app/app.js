@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngResource', 'ngRoute']).value('toastr', toastr);
+var app = angular.module('app', ['ngResource', 'ngRoute', 'angularFileUpload']).value('toastr', toastr);
 
 app.config(function($routeProvider) {
 
@@ -25,6 +25,9 @@ app.config(function($routeProvider) {
             templateUrl: '/partials/main/home',
             controller: 'MainCtrl'
         })
+        .when('/404',{
+            templateUrl: 'partials/main/404'
+        })
         .when('/books', {
             templateUrl: '/partials/books/books-list',
             controller: 'BooksListCtrl'
@@ -41,6 +44,11 @@ app.config(function($routeProvider) {
         .when('/admin/users', {
             templateUrl: '/partials/admin/users-list',
             controller: 'UserListCtrl',
+            resolve: routeUserChecks.adminRole
+        })
+        .when('/admin/users/:id', {
+            templateUrl: '/partials/admin/user-details',
+            controller: 'UserDetailsCtrl',
             resolve: routeUserChecks.adminRole
         })
         .when('/libAdmin/books', {
@@ -72,6 +80,10 @@ app.config(function($routeProvider) {
             controller: 'UpdateBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
+        .otherwise({redirectTo: '/404'});
+
+
+
 });
 
 app.run(function($rootScope, $location) {

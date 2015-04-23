@@ -1,7 +1,17 @@
 .container
     table.table
-        tr(ng-repeat="user in users")
-            td {{ user.firstName }}
-            td {{ user.lastName }}
+        tr(ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize")
             td
-             span(ng-repeat="role in user.roles") {{ role }}
+                a(href="#/admin/users/{{ user._id }}") {{ user.firstName }}
+            td {{ user.surName }}
+            td {{ user.lastName }}
+            td {{ user.grade }}
+            td
+                span(ng-repeat="role in user.roles") {{ role }}
+
+    button(ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1")
+        |   Previous
+    |   {{currentPage+1}}/{{numberOfPages()}}
+    button(ng-disabled="currentPage >= users.length/pageSize - 1" ng-click="currentPage=currentPage+1")
+        |   Next
+

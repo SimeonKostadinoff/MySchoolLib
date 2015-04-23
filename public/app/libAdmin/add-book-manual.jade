@@ -42,13 +42,13 @@
                             label.col-md-7.control-label(for="cover")
                                 span
                                     | Корица
-                                input.form-control(type="file", placeholder="Корица",fileread="book.cover" ng-model="book.cover")
+                                input.form-control(type="file", placeholder="Корица", fileread="book.cover" ng-model="book.cover")
+
+
                     .col-md-4
                         img.input-img(ng-src="{{ book.cover }} " alt="Не е избрана корица")
-
                 .pull-right
-
-                    button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookForm.$invalid") Добави
+                    // Not valid form name
+                    button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookFormaskfnaskjf.$invalid") Добави
                     a.btn.btn-primary(href="#") Отказ
-
 

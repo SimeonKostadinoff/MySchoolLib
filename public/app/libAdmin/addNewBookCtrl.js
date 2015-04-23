@@ -1,4 +1,4 @@
-app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory){
+app.controller('AddNewBookCtrl', function($scope, $location, notifier, bookFactory, $upload){
     $scope.book = [];
     $scope.book.cover = '../../images/no_book_cover_4.jpg';
 
@@ -51,18 +51,17 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
             }
         })
     }
-
     $scope.addNewBook = function(book){
-        if(!book.cover) {
-            book.cover = '../../images/no_book_cover_4.jpg';
-        }
-        bookFactory.addNewBook(book).then(function(){
-            notifier.info('Книгата е добавена.');
-            $scope.book=[];
-            if($scope.items){
-                $scope.items=[];
-            }
-        })
+        //if(!book.cover) {
+        //    book.cover = '../../images/no_book_cover_4.jpg';
+        //}
+        //bookFactory.addNewBook(book).then(function(){
+        //    notifier.info('Книгата е добавена.');
+        //    $scope.book=[];
+        //    if($scope.items){
+        //        $scope.items=[];
+        //    }
+        //})
     }
 
 
@@ -75,9 +74,20 @@ app.controller('AddNewBookCtrl', function($scope,$location,notifier,bookFactory)
                 element.bind("change", function (changeEvent) {
                     var reader = new FileReader();
                     reader.onload = function (loadEvent) {
-                        scope.$apply(function () {
-                            scope.fileread = loadEvent.target.result;
-                        });
+                        var uploadFileBase64 = loadEvent.target.result;
+                        uploadFileType = uploadFileBase64.slice(uploadFileBase64.indexOf(':')+1,uploadFileBase64.indexOf('/'));
+
+                        if(uploadFileType=='image') {
+                            scope.$apply(function () {
+                                scope.fileread = uploadFileBase64;
+                            });
+                            console.log("uploaded");
+                        }
+                        else{
+                            console.log("Nestava");
+                            console.log("The type is: " + uploadFileType);
+                            console.log("The size is: " + loadEvent.total);
+                        }
                     }
                     reader.readAsDataURL(changeEvent.target.files[0]);
                 });

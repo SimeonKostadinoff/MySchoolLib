@@ -1,46 +1,44 @@
-app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, currentBook, identity, bookFactory, notifier) {
+app.controller('BookDetailsCtrl', function($scope, $routeParams, $location, cachedBooks, currentBook, identity, bookFactory, notifier) {
     $scope.identity=identity;
     $scope.currentBook=currentBook;
 
     // Summary
-    $(".show-summary").click(function(){
-        $(".summary").slideDown();
-        $(this).hide();
-        $(".hide-summary").show();
-    });
-    $(".hide-summary").click(function(){
-        $(".summary").slideUp();
-        $(this).hide();
-        $(".show-summary").show();
+        $(".show-summary").click(function(){
+            $(".summary").slideDown();
+            $(this).hide();
+            $(".hide-summary").show();
+        });
+        $(".hide-summary").click(function(){
+            $(".summary").slideUp();
+            $(this).hide();
+            $(".show-summary").show();
     });
     // end Summary
+
     // Books information
-    $(".show-admin-book").click(function(){
-        $(".book-information").slideDown();
-        $(this).hide();
-        $(".hide-admin-book").show();
-    });
-    $(".hide-admin-book").click(function(){
-        $(".book-information ").slideUp();
-        $(this).hide();
-        $(".show-admin-book").show();
-    });
+        $(".show-admin-book").click(function(){
+            $(".book-information").slideDown();
+            $(this).hide();
+            $(".hide-admin-book").show();
+        });
+        $(".hide-admin-book").click(function(){
+            $(".book-information ").slideUp();
+            $(this).hide();
+            $(".show-admin-book").show();
+        });
     // end Books information
 
     // Like and Request buttons
-
-    $(".number-requests").hover(function(){
-        $(".show-requests-when-hover").show();
-    }, function(){
-        $(".show-requests-when-hover").hide();
-    });
-
-    $(".number-likes").hover(function(){
-        $(".show-likes-when-hover").show();
-    }, function(){
-        $(".show-likes-when-hover").hide();
-    });
-
+        $(".number-requests").hover(function(){
+            $(".show-requests-when-hover").show();
+        }, function(){
+            $(".show-requests-when-hover").hide();
+        });
+        $(".number-likes").hover(function(){
+            $(".show-likes-when-hover").show();
+        }, function(){
+            $(".show-likes-when-hover").hide();
+        });
     // end Like and Request buttons
 
 
@@ -60,9 +58,11 @@ app.controller('BookDetailsCtrl', function($scope, $routeParams, cachedBooks, cu
                 else{
                     $scope.status= 'в наличност';
                 }
-
             }
         })
+        if($scope.book._id != $routeParams.id){
+            $location.path('/404');
+        }
     })
     $scope.currentStatus = function(book){
         if(!currentBook.isBookRequested(book) && !currentBook.isBookTaken(book)) return 'в наличност';
