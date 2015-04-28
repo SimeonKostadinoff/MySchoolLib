@@ -38,7 +38,7 @@
                 a(href="" ng-click="sort = 'currentStatus'") Статус
             th //
 
-        .books-list-info(ng-repeat="book in books | filter: search | orderBy: sort" ng-mouseenter="show = true" ng-mouseleave="show = false")
+        .books-list-info(ng-repeat="book in books | startFrom:currentPage*pageSize | limitTo:pageSize | filter: search | orderBy: sort" ng-mouseenter="show = true" ng-mouseleave="show = false")
                 .title-height
                     a.books-list-title(href="#/books/{{ book._id }}" ng-show="show")
                         | {{ book.title }}
@@ -59,3 +59,8 @@
                                     div.like-button-container(ng-show="canLikeBeCanceled(book)")
                                         button.dislike-button.remove-when-hover Харесана
                                         button.dislike-button.show-when-hover(ng-click="removeLikeFromBook(book)") Не ми харесва
+    button(ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1")
+        |   Previous
+    |   {{currentPage+1}}/{{numberOfPages()}}
+    button(ng-disabled="currentPage >= books.length/pageSize - 1" ng-click="currentPage=currentPage+1")
+        |   Next

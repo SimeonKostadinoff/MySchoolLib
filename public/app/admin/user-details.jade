@@ -1,4 +1,26 @@
-.jumbotron
-    h1   {{ user.firstName }}'s Profile
-
-    h2   {{ user.lastName }}
+.container
+    h2 {{user.firstName}} {{user.lastName}}
+    .well
+        h2  Заявени книги
+        table.table.table-hover
+            tr
+                th Заглавие
+                th Автор
+            tr(ng-repeat="book in user.requestedBooks")
+                td
+                    a(href="#/books/{{ book.bookID}}")
+                        | {{ book.bookTitle }}
+                td {{ book.bookAuthor }}
+    .well
+        h2  Взети книги
+        table.table.table-hover
+            tr
+                th Заглавие
+                th Автор
+                th Дата на връщане
+            tr(ng-repeat="book in user.takenBooks")
+                td
+                    a(href="#/books/{{ book.bookID}}")
+                        | {{ book.bookTitle }}
+                td {{ book.bookAuthor }}
+                td {{ book.dateToBeReturned | date }}

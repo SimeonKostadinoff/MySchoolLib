@@ -6,8 +6,12 @@ app.factory('currentBook', function(identity){
             || book.status.requestedBy == ''
             ||book.status.requestedBy == ""
             || book.status.requestedBy == []
-            || book.status.takenBy == {}) return false;
-        else return true;
+            || book.status.takenBy == {}){
+            return false;
+        }
+        else{
+            return true;
+        }
         },
 
         isBookTaken = function(book){

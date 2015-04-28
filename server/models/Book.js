@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var booksSchema = mongoose.Schema({
     title: { type: String, require: '{PATH} is required'},
     author: String,
-    genre: String,
+    genre: [],
     boughtDate: Date,
     isbn: { type: String, unique: true },
     summary:String,

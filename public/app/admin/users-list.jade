@@ -1,11 +1,15 @@
 .container
-    table.table
-        tr(ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize")
+    table.table.table-hover.table-striped
+        tr
+            th Име
+            th Фамилия
+            th Клас
+            th Роли
+        tr(ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize | filter: search | orderBy:predicate:reverse")
             td
                 a(href="#/admin/users/{{ user._id }}") {{ user.firstName }}
-            td {{ user.surName }}
             td {{ user.lastName }}
-            td {{ user.grade }}
+            td {{ user.grade }} {{ user.class }}
             td
                 span(ng-repeat="role in user.roles") {{ role }}
 

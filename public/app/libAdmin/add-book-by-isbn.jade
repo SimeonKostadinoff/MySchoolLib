@@ -32,12 +32,17 @@
                                     | Автор
                                 input.form-control(type="text", placeholder="Автор", ng-model="book[$index].author", required)
                         .form-group
-                            label.col-md-7.control-label(for="tags")
+                            label.col-md-7.control-label(for="genre")
+                                span
+                                    | Жанр
+                                input.form-control(type="text", placeholder="Жанр", ng-model="book[$index].genre", required)
+                        .form-group
+                            label.col-md-7.control-label(for="publisher")
                                 span
                                     | Издателство
                                 input.form-control(type="text", placeholder="Издателство", ng-model="book[$index].publisher")
                         .form-group
-                            label.col-md-7.control-label(for="tags")
+                            label.col-md-7.control-label(for="publishedDate")
                                 span
                                     | Година на издаване
                                 input.form-control(type="number", placeholder="Година на издаване", ng-model="book[$index].publishedDate")

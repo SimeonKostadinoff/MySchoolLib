@@ -240,7 +240,8 @@ module.exports = {
                         "summary": newBookData.summary,
                         "publisher": newBookData.publisher,
                         "publishedDate": newBookData.publishedDate,
-                        "cover": newBookData.cover
+                        "cover": newBookData.cover,
+                        "genre": newBookData.genre
                     },
                     {safe: true, upsert: true},
                     function (err, model) {

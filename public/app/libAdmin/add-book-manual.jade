@@ -20,6 +20,11 @@
                                 span
                                     | Автор
                                 input.form-control(type="text", placeholder="Автор", ng-model="book.author", required)
+                        .form-group
+                            label.col-md-7.control-label(for="genre")
+                                span
+                                    | Жанр
+                                input.form-control(type="text", placeholder="Жанр", ng-model="book.genre", required)
                         //.form-group
                         //    label.col-md-7.control-label(for="tags") Tags
                         //        input.form-control(type="text", placeholder="Tags", ng-model="book.tags" required)
@@ -42,13 +47,12 @@
                             label.col-md-7.control-label(for="cover")
                                 span
                                     | Корица
-                                input.form-control(type="file", placeholder="Корица", fileread="book.cover" ng-model="book.cover")
-
+                                input.form-control( name="imageInput" type="file", placeholder="Корица", fileread="book.cover" ng-model="book.cover")
 
                     .col-md-4
                         img.input-img(ng-src="{{ book.cover }} " alt="Не е избрана корица")
                 .pull-right
                     // Not valid form name
-                    button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookFormaskfnaskjf.$invalid") Добави
+                    button.btn.btn-primary(ng-click="addNewBook(book)", ng-disabled="addNewBookForm.$invalid") Добави
                     a.btn.btn-primary(href="#") Отказ
 

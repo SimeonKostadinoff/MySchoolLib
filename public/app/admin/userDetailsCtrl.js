@@ -5,11 +5,12 @@ app.controller('UserDetailsCtrl', function($scope, $routeParams, $location, cach
             if (user._id === $routeParams.id) {
                 $scope.user = user;
             }
-        })
+        });
         if($scope.user._id != $routeParams.id){
             $location.path('/404');
         }
-    })
+    });
+
 
 
 

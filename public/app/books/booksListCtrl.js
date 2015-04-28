@@ -164,4 +164,18 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
     });
 
+    $scope.currentPage = 0;
+    $scope.pageSize = 6;
+    $scope.numberOfPages=function(){
+        return Math.ceil($scope.books.length/$scope.pageSize);
+    }
+
+});
+
+
+app.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
 });
