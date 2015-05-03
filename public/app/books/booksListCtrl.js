@@ -1,4 +1,4 @@
-app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook) {
+app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook, filterFilter) {
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
     $scope.predicate = '-boughtDate';
@@ -29,6 +29,7 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
 
 
     cachedBooks.query().$promise.then(function (collection) {
+        $scope.books=collection;
         collection.forEach(function (book) {
             book.canBeRequested = currentBook.canBeRequested(book);
             book.canRequestBeCanceled = currentBook.isBookRequestedByCurrentUser(book);
@@ -163,19 +164,6 @@ app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notif
         });
 
     });
-
-    $scope.currentPage = 0;
-    $scope.pageSize = 6;
-    $scope.numberOfPages=function(){
-        return Math.ceil($scope.books.length/$scope.pageSize);
-    }
-
-});
-
-
-app.filter('startFrom', function() {
-    return function(input, start) {
-        start = +start; //parse to int
-        return input.slice(start);
-    }
+    $scope.pageSize=6;
+    $scope.currentPage=1;
 });

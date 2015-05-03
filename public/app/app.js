@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngResource', 'ngRoute']).value('toastr', toastr);
+var app = angular.module('app', ['ngResource', 'ngRoute', 'angularUtils.directives.dirPagination']).value('toastr', toastr);
 
 app.config(function($routeProvider) {
 

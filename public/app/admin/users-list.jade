@@ -1,21 +1,24 @@
 .container
+    //TODO: Better search
+    .col-md-6.buttons-position
+        p.search-title
+            | Търси:
+        input.form-control.main-search(type="text", placeholder="Търси ...", ng-model="search")
+        | Page size
+        input.form-control(type="text", placeholder="Page size ...", ng-model="pageSize")
+
     table.table.table-hover.table-striped
         tr
             th Име
             th Фамилия
             th Клас
             th Роли
-        tr(ng-repeat="user in users | startFrom:currentPage*pageSize | limitTo:pageSize | filter: search | orderBy:predicate:reverse")
+        tr(dir-paginate="user in users | filter:search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="usersPagination")
             td
                 a(href="#/admin/users/{{ user._id }}") {{ user.firstName }}
             td {{ user.lastName }}
             td {{ user.grade }} {{ user.class }}
             td
                 span(ng-repeat="role in user.roles") {{ role }}
-
-    button(ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1")
-        |   Previous
-    |   {{currentPage+1}}/{{numberOfPages()}}
-    button(ng-disabled="currentPage >= users.length/pageSize - 1" ng-click="currentPage=currentPage+1")
-        |   Next
-
+    div.text-center
+        dir-pagination-controls(boundary-links="true" pagination-id="usersPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../lib/angular-utils-pagination/dirPagination.tpl.html")

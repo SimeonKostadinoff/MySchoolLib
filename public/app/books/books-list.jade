@@ -38,13 +38,13 @@
                 a(href="" ng-click="sort = 'currentStatus'") Статус
             th //
 
-        .books-list-info(ng-repeat="book in books | startFrom:currentPage*pageSize | limitTo:pageSize | filter: search | orderBy: sort" ng-mouseenter="show = true" ng-mouseleave="show = false")
+        .books-list-info(dir-paginate="book in books | filter:search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="booksPagination" ng-mouseenter="show = true" ng-mouseleave="show = false")
                 .title-height
                     a.books-list-title(href="#/books/{{ book._id }}" ng-show="show")
                         | {{ book.title }}
                 .img-and-attributes-position
                     a.books-list-info-img(href="#/books/{{ book._id }}")
-                        img.book-cover.books-list-img(ng-src="{{ book.cover }}")
+                        img.book-cover.books-list-img(ng-src="{{ book.cover }}" alt="Image not found" onError="this.onerror=null;this.src='../../images/no_book_cover_4.jpg';")
                     .books-list-auth-surround(ng-show="show")
                         .books-list-auth-position(ng-show="identity.isAuthenticated()")
                             a.img-hover-effect(href="#/books/{{ book._id }}")
@@ -59,8 +59,5 @@
                                     div.like-button-container(ng-show="canLikeBeCanceled(book)")
                                         button.dislike-button.remove-when-hover Харесана
                                         button.dislike-button.show-when-hover(ng-click="removeLikeFromBook(book)") Не ми харесва
-    button(ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1")
-        |   Previous
-    |   {{currentPage+1}}/{{numberOfPages()}}
-    button(ng-disabled="currentPage >= books.length/pageSize - 1" ng-click="currentPage=currentPage+1")
-        |   Next
+    div.text-center
+        dir-pagination-controls(boundary-links="true" pagination-id="booksPagination" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../lib/angular-utils-pagination/dirPagination.tpl.html")
