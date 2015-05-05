@@ -80,6 +80,11 @@ app.config(function($routeProvider) {
             controller: 'UpdateBookCtrl',
             resolve: routeUserChecks.libAdminRole
         })
+        .when('/libAdmin/not-returned-books', {
+            templateUrl: '/partials/libAdmin/not-returned-books',
+            controller: 'NotReturnedBooksCtrl',
+            resolve: routeUserChecks.libAdminRole
+        })
         .otherwise({redirectTo: '/404'});
 
 

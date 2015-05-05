@@ -21,6 +21,15 @@ module.exports = {
             res.send(book);
         })
     },
+    getNotReturnedBooks: function(req,res,next){
+        Book.find({"status.returned": false}).exec(function(err, collection){
+            if(err){
+                console.log("Not returned books could not be loaded: " + err);
+            }
+
+            res.send(collection);
+        })
+    },
     addNewBook: function(req, res, next) {
         var newBookData = req.body;
         newBookData.boughtDate=new Date();

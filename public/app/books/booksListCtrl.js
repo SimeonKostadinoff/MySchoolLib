@@ -1,4 +1,4 @@
-app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook, filterFilter) {
+app.controller('BooksListCtrl', function($scope, cachedBooks, bookFactory, notifier, identity, currentBook) {
     $scope.books = cachedBooks.query();
     $scope.identity = identity;
     $scope.predicate = '-boughtDate';

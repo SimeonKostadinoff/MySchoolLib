@@ -7,6 +7,7 @@ module.exports = function(app) {
     app.post('/api/books',auth.isInRole('libAdmin'), controllers.books.addNewBook);
     app.get('/api/books', controllers.books.getAllBooks);
     app.get('/api/books/:id', controllers.books.getBookById);
+    app.get('/api/notReturnedBooks', controllers.books.getNotReturnedBooks);
     app.put('/api/books', auth.isAuthenticated, controllers.books.addOrRemoveRequestOrTakeBook);
 
     app.get('/partials/:partialArea/:partialName', function(req, res) {
