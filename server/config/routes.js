@@ -19,6 +19,7 @@ module.exports = function(app) {
 
     app.get('/api/*', function(req, res) {
         res.status(404);
+        res.redirect('/#/404');
         res.end();
     })
 
